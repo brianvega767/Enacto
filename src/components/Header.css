@@ -284,3 +284,50 @@
   transform: translateY(-1px);
 }
 
+/* =========================
+   HEADER MOBILE FIX
+   ========================= */
+@media (max-width: 768px) {
+
+  .header-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .logo {
+    font-size: 22px;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .search-wrapper {
+    width: 100%;
+  }
+
+  .search-input {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 14px;
+  }
+
+  .header-actions {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .header-auth-buttons {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .header-login-btn,
+  .header-register-btn {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+  }
+}

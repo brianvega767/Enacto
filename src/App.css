@@ -3645,3 +3645,11 @@ html, body {
 .admin-status.suspended {
   color: #991b1b;
 }
+
+@media (max-width: 768px) {
+
+  .main-content {
+    padding: 0 12px;
+  }
+
+}

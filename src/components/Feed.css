@@ -474,3 +474,14 @@
   margin-bottom: 2.5rem;
 }
 
+/* =========================
+   FEED MOBILE GRID
+   ========================= */
+@media (max-width: 768px) {
+
+  .feed-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+}
