@@ -1,0 +1,286 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  z-index: 1200;
+}
+
+.header-inner {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0.7rem 1rem 0.3rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: 700;
+  color: #111;
+  text-decoration: none;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.profile-btn {
+  margin-left: 0.5rem;
+}
+
+.profile-circle {
+  width: 36px;
+  height: 36px;
+  background: #ddd;
+  border-radius: 50%;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.header-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.header-link:hover {
+  text-decoration: underline;
+}
+
+.header-btn {
+  text-decoration: none;
+  background: #111;
+  color: white;
+  padding: 0.45rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.header-btn:hover {
+  background: #000;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-btn {
+  background: #111;
+  color: #fff;
+  border: none;
+  padding: 6px 9px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.search-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.search-filters-btn {
+  align-self: flex-start;
+  background: transparent;
+  border: none;
+  color: #555;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.search-filters-btn:hover {
+  text-decoration: underline;
+}
+
+.filters-placeholder {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+/* ========================= */
+/* FIX ANCHO BUSCADOR */
+/* ========================= */
+
+.search-block {
+  flex: 1;              /* ocupa el espacio central */
+  max-width: 700px;     /* mismo ancho visual que antes */
+}
+
+.search-input {
+  width: 100%;
+}
+
+/* ========================= */
+/* BUSCADOR CON BOTÓN INTERNO */
+/* ========================= */
+
+.search-wrapper {
+  position: relative;
+}
+
+.search-input {
+  padding-right: 42px; /* espacio para el botón */
+}
+
+.search-filter-inside {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #666;
+}
+
+.search-filter-inside:hover {
+  color: #000;
+}
+
+/* placeholder del panel (temporal) */
+.filters-panel-placeholder {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 6px auto 0;
+  max-width: 600px;
+}
+
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #0b0f1a;
+  border: 1px solid #1f2a44;
+  z-index: 50;
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 4px 0;
+  border-radius: 8px;
+}
+
+.search-suggestions li {
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.search-suggestions li:hover,
+.search-suggestions li.active {
+  background: #1f2a44;
+}
+
+.suggestion-kind {
+  opacity: 0.5;
+  font-size: 12px;
+}
+
+.header-login-btn {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14.5px;
+  color: #111;
+  background: #f0f2f5;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.header-login-btn:hover {
+  background: #e4e7ec;
+}
+
+.header-auth-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.header-login-btn,
+.header-register-btn {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14.5px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.05s ease;
+}
+
+.header-login-btn {
+  color: #111;
+  background: #f0f2f5;
+}
+
+.header-login-btn:hover {
+  background: #e4e7ec;
+}
+
+.header-register-btn {
+  color: #fff;
+  background: #2563eb;
+}
+
+.header-register-btn:hover {
+  background: #1d4ed8;
+}
+
+.header-login-btn:active,
+.header-register-btn:active {
+  transform: translateY(1px);
+}
+
+/* =========================
+   LOGO ENACTO
+   ========================= */
+
+.header .logo {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-family: "Inter", system-ui, sans-serif;
+
+  /* 🎨 Azul pastel elegante */
+  color: #4f8cff;
+
+  /* 📍 Ajuste de posición */
+  margin-left: -35px;
+
+  text-decoration: none;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* Hover sutil */
+.header .logo:hover {
+  color: #3b73e6;
+  transform: translateY(-1px);
+}
+

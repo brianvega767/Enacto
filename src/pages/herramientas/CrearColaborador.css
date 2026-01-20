@@ -1,0 +1,295 @@
+.crear-colab-layout {
+  min-height: 100vh;
+  background: #eaf6ef;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px;
+}
+
+.crear-colab-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 560px;
+  border-radius: 22px;
+  padding: 40px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+.crear-colab-back {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f3d2b;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.crear-colab-title {
+  font-size: 28px;
+  margin: 0;
+  color: #143d2a;
+}
+
+.crear-colab-subtitle {
+  margin: 12px 0 30px;
+  font-size: 16px;
+  color: #4a6b5a;
+  line-height: 1.6;
+}
+
+.crear-colab-form .form-group {
+  margin-bottom: 20px;
+}
+
+.crear-colab-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #143d2a;
+}
+
+/* 🔧 ACÁ EL ÚNICO CAMBIO */
+.crear-colab-form input,
+.crear-colab-form textarea,
+.crear-colab-form select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #cfded6;
+  font-size: 14px;
+  background: #ffffff;
+}
+
+/* Opcional pero recomendado: mismo look al focus */
+.crear-colab-form input:focus,
+.crear-colab-form textarea:focus,
+.crear-colab-form select:focus {
+  outline: none;
+  border-color: #1f7a4d;
+}
+
+.crear-colab-form small {
+  font-size: 12px;
+  color: #6b8c7b;
+}
+
+.form-submit {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #1f7a4d, #145c39);
+  border: none;
+  border-radius: 16px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.form-submit:disabled {
+  opacity: 0.7;
+}
+
+.form-success {
+  background: #e7f7ef;
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 16px;
+  color: #1f7a4d;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* =========================
+   LAYOUT
+   ========================= */
+
+.crear-colab-layout {
+  min-height: 100vh;
+  background: #eaf6ef;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px;
+}
+
+/* =========================
+   CARD
+   ========================= */
+
+.crear-colab-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 560px;
+  border-radius: 22px;
+  padding: 40px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+.crear-colab-back {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f3d2b;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.crear-colab-title {
+  font-size: 28px;
+  margin: 0;
+  color: #143d2a;
+  font-weight: 700;
+}
+
+.crear-colab-subtitle {
+  margin: 12px 0 30px;
+  font-size: 16px;
+  color: #4a6b5a;
+  line-height: 1.6;
+}
+
+/* =========================
+   FORM
+   ========================= */
+
+.crear-colab-form .form-group {
+  margin-bottom: 20px;
+}
+
+.crear-colab-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #143d2a;
+}
+
+.crear-colab-form input,
+.crear-colab-form textarea,
+.crear-colab-form select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #cfded6;
+  font-size: 14px;
+  color: #143d2a;
+}
+
+.crear-colab-form textarea {
+  resize: vertical;
+}
+
+.crear-colab-form small {
+  font-size: 12px;
+  color: #6b8c7b;
+}
+
+/* =========================
+   BOTÓN
+   ========================= */
+
+.form-submit {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #1f7a4d, #145c39);
+  border: none;
+  border-radius: 16px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.form-submit:disabled {
+  opacity: 0.7;
+}
+
+/* =========================
+   MODAL ÉXITO
+   ========================= */
+
+.colab-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+}
+
+.colab-modal {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 36px;
+  max-width: 520px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
+}
+
+.colab-modal h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: #143d2a;
+  font-size: 22px;
+}
+
+.colab-modal p {
+  font-size: 15px;
+  color: #2f4f3f;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.modal-note {
+  font-size: 14px;
+  color: #4a6b5a;
+}
+
+/* Botón modal */
+.modal-button {
+  margin-top: 24px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: none;
+  background: #143d2a;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.form-group small {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #5f7f6f;
+}
+
+.form-error {
+  background: #fdecea;
+  color: #b42318;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.form-success {
+  background: #e7f7ef;
+  color: #1f7a4d;
+  padding: 14px;
+  border-radius: 14px;
+  margin-bottom: 18px;
+  font-weight: 700;
+  text-align: center;
+  font-size: 15px;
+}

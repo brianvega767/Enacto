@@ -1,0 +1,41 @@
+.categories-bar {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  gap: 0.8rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 0.8rem 1.2rem;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  z-index: 1100;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.categories-bar.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.category-chip {
+  padding: 0.45rem 1rem;
+  background: #f1f1f1;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.category-chip:hover {
+  background: #e0e0e0;
+}
+
+/* 🔧 Subir levemente las categorías para no tapar el botón del sidebar */
+.categories-bar {
+  margin-top: -6px; /* ajustá entre -4px y -10px si querés afinar */
+}

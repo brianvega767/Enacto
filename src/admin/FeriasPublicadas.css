@@ -1,0 +1,100 @@
+.admin-ferias-page {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.admin-ferias-title {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.admin-ferias-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-feria-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+.admin-feria-info h3 {
+  margin: 0 0 6px;
+}
+
+.admin-feria-info p {
+  margin: 4px 0;
+  color: #555;
+}
+
+.admin-feria-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-secondary {
+  padding: 10px 16px;
+  background: #eaeaea;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-danger {
+  padding: 10px 16px;
+  background: #d64545;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* =====================
+   MODAL CONFIRMACIÓN
+   ===================== */
+
+.admin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.admin-modal {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px 30px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  color: #1f3d2b;
+}
+
+.admin-modal h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 22px;
+}
+
+.admin-modal p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4a6b5a;
+}
+
+.admin-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}

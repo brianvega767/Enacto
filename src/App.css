@@ -1,0 +1,3647 @@
+/* RESET */
+* {
+  html, body {
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #050816;
+  color: #f5f5f5;
+}
+
+/* PAGE WRAPPER (ensures global centering) */
+.page-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* HEADER */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  backdrop-filter: blur(12px);
+  background: rgba(5, 8, 22, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header-inner {
+  width: 94%;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* LOGO */
+.logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.logo-badge {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%, #38bdf8, #6366f1);
+}
+
+/* SEARCH BAR */
+.search-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.search-wrapper input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e5e7eb;
+}
+
+/* AUTH BUTTONS */
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn {
+  font-size: 0.85rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #e5e7eb;
+}
+
+.btn-outline {
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #38bdf8, #6366f1);
+  color: #0b1120;
+  font-weight: 600;
+}
+
+/* MAIN CONTENT */
+.main-content {
+  width: 94%;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2.5rem;
+}
+
+/* HERO */
+.hero {
+  margin: 1rem 0 1.25rem;
+}
+
+.hero-title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+}
+
+.hero-highlight {
+  background: linear-gradient(135deg, #38bdf8, #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 0.95rem;
+  color: #9ca3af;
+  max-width: 600px;
+}
+
+/* FILTER CHIPS */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.chip {
+  font-size: 0.8rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: #0f172a;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  cursor: pointer;
+  color: white;
+}
+
+.chip-active {
+  background: linear-gradient(135deg, #38bdf8, #6366f1);
+  border: none;
+  color: #000;
+}
+
+/* FEED GRID */
+.feed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* CARD */
+.card {
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #0f172a;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.card-media {
+  height: 170px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.card-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(5, 8, 22, 0.85);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+.card-title {
+  font-weight: 600;
+}
+
+.card-meta {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.card-description {
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  color: #d1d5db;
+}
+
+.card-footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.location-dot {
+  width: 7px;
+  height: 7px;
+  background: #22c55e;
+  border-radius: 999px;
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #38bdf8, #6366f1);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* =========================
+   AUTH UI MODERNO Y CLARO
+========================= */
+
+.auth-screen {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4f6fb;
+}
+
+.auth-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.auth-card h1 {
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 0.85rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 0.7rem;
+  font-size: 0.95rem;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: black;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 0.85rem;
+  margin-top: 0.8rem;
+  border-radius: 999px;
+  border: none;
+  background: black;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-form button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.auth-link {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #000;
+  text-decoration: underline;
+}
+
+.auth-footer {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.auth-footer a {
+  color: #000;
+  font-weight: 600;
+}
+
+.error-text {
+  color: crimson;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.layout-container {
+  background: #ffffff;
+  min-height: 100vh;
+}
+
+.main-content {
+  background: #ffffff;
+}
+
+.feed-wrapper {
+  background: #ffffff;   /* ✅ fondo blanco real */
+  min-height: 100vh;
+  padding-bottom: 3rem;
+}
+
+/* ===== DASHBOARD USUARIO COMÚN ===== */
+
+.dashboard-container {
+  min-height: 100vh;
+  background: #f5f6f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.dashboard-main-card {
+  background: white;
+  padding: 40px 50px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  max-width: 520px;
+  width: 100%;
+}
+
+.dashboard-main-card h1 {
+  font-size: 28px;
+  color: #111;
+  margin-bottom: 14px;
+}
+
+.dashboard-main-card p {
+  font-size: 15px;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+.dashboard-main-btn {
+  background: #111;
+  color: white;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dashboard-main-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.dashboard-secondary-box {
+  display: flex;
+  gap: 14px;
+}
+
+.dashboard-secondary-btn {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dashboard-secondary-btn.logout {
+  background: crimson;
+  color: white;
+  border: none;
+}
+
+/* =========================
+   MI CUENTA - PÁGINA COMPLETA
+   ========================= */
+
+.mi-cuenta-page {
+  min-height: 100vh;
+  background: #f5f6f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120px 20px 40px;
+  gap: 40px;
+}
+
+.mi-cuenta-main {
+  background: white;
+  padding: 42px;
+  border-radius: 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  text-align: center;
+  max-width: 620px;
+  width: 100%;
+}
+
+.mi-cuenta-main h1 {
+  font-size: 30px;
+  margin-bottom: 16px;
+  color: #111;
+}
+
+.mi-cuenta-main p {
+  font-size: 17px;
+  color: #444;
+  margin-bottom: 28px;
+}
+
+.mi-cuenta-main-btn {
+  background: #111;
+  color: white;
+  border: none;
+  padding: 18px 36px;
+  border-radius: 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.mi-cuenta-main small {
+  display: block;
+  margin-top: 14px;
+  color: #777;
+}
+
+/* 🔹 BLOQUE SECUNDARIO */
+.mi-cuenta-secondary {
+  background: white;
+  padding: 32px;
+  border-radius: 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  max-width: 620px;
+  width: 100%;
+}
+
+.mi-cuenta-secondary h3 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #111;
+}
+
+.mi-cuenta-option {
+  width: 100%;
+  background: #f1f2f6;
+  border: none;
+  padding: 16px;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: left;
+}
+
+/* ✅ BOTÓN VOLVER EN MI CUENTA */
+.mi-cuenta-back {
+  position: absolute;
+  top: 90px;
+  left: 24px;
+  background: white;
+  border: 1px solid #ddd;
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* ✅ Botón volver integrado al bloque */
+.mi-cuenta-back-inline {
+  background: #e8eaf0;
+  font-weight: 500;
+}
+
+/* =========================
+   ASISTENTE PASO 1 - CATEGORÍAS
+   ========================= */
+
+.asistente-page {
+  min-height: 100vh;
+  background: #f5f6f8;
+  padding: 120px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.asistente-title {
+  font-size: 28px;
+  margin-bottom: 8px;
+  color: #111;
+}
+
+.asistente-subtitle {
+  color: #555;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.asistente-grid {
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.asistente-card {
+  background: white;
+  padding: 28px;
+  border-radius: 22px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.asistente-card:hover {
+  transform: translateY(-4px);
+}
+
+.asistente-card.selected {
+  outline: 3px solid #111;
+  transform: scale(1.03);
+}
+
+.asistente-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.asistente-name {
+  font-size: 16px;
+  color: #111;
+  font-weight: 500;
+}
+
+/* Footer fijo */
+.asistente-footer {
+  margin-top: 50px;
+}
+
+.asistente-btn {
+  background: #111;
+  color: white;
+  border: none;
+  padding: 16px 40px;
+  border-radius: 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.asistente-btn {
+  background: black;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.asistente-btn:hover {
+  background: #222;
+}
+
+.asistente-btn.disabled {
+  opacity: 0.5;
+  cursor: pointer !important; /* ❗ SE VE NORMAL PERO SE BLOQUEA POR LÓGICA, NO POR CSS */
+}
+
+
+/* =========================
+   ASISTENTE - BOTÓN VOLVER
+   ========================= */
+.asistente-back {
+  position: absolute;
+  top: 90px;
+  left: 30px;
+  background: white;
+  border: 1px solid #ddd;
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* =========================
+   BUSCADOR DE CATEGORÍAS
+   ========================= */
+.asistente-search {
+  width: 100%;
+  max-width: 420px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  margin-bottom: 32px;
+  font-size: 15px;
+}
+
+/* ✅ Grid centrado solo para Paso Intermedio */
+.asistente-grid-centered {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ✅ TÍTULOS DE SECCIÓN EN PASO 2 */
+.asistente-section-title {
+  margin: 40px 0 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+  text-align: center;
+}
+
+/* Espaciado general entre bloques */
+.asistente-sections {
+  width: 100%;
+}
+
+/* ✅ BLOQUES DE SECCIÓN EN PASO 2 */
+.asistente-section-block {
+  width: 100%;
+  margin-bottom: 60px;
+}
+
+/* ✅ TÍTULOS GRANDES, ELEGANTES Y A LA IZQUIERDA */
+.asistente-section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111;
+  text-align: left;
+  padding-left: 12px;
+  border-left: 4px solid #000;
+  margin: 40px auto 24px;
+  max-width: 1000px;
+}
+
+/* ✅ GRIDS CENTRADOS Y LIMITADOS */
+.asistente-grid-centered {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ✅ BOTÓN SECUNDARIO (WHATSAPP) */
+.asistente-btn-sec {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #aaa;
+  background: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* ✅ CARD PRINCIPAL DEL FORMULARIO */
+.asistente-card-form {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 22px;
+  padding: 32px 28px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+/* ✅ BLOQUES DE SECCIÓN */
+.asistente-form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.asistente-form-section h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 6px;
+  border-left: 4px solid #000;
+  padding-left: 10px;
+}
+
+/* ✅ INPUTS DEL PASO 3 */
+.asistente-form-section input,
+.asistente-form-section textarea,
+.asistente-form-section select {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  outline: none;
+}
+
+.asistente-form-section textarea {
+  resize: none;
+  min-height: 90px;
+}
+
+/* ✅ OK */
+.asistente-ok {
+  color: green;
+  font-weight: 600;
+}
+
+/* ✅ BOTÓN SECUNDARIO */
+.asistente-btn-sec {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ✅ BOTÓN PRINCIPAL DESHABILITADO */
+.asistente-btn {
+  background: #ccc;
+  color: #666;
+  padding: 16px 28px;
+  border-radius: 14px;
+  border: none;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: not-allowed;
+  transition: all 0.25s ease;
+}
+
+/* ✅ BOTÓN HABILITADO */
+.asistente-btn.enabled {
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* ✅ HOVER SOLO CUANDO ESTÁ HABILITADO */
+.asistente-btn.enabled:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+}
+
+/* ✅ FONDO CON DETALLE SUTIL */
+.asistente-bg-pro {
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #f2f2f2, #ffffff);
+}
+
+/* ✅ CARD PRO */
+.pro-card {
+  border-radius: 26px;
+}
+
+/* ✅ HEADER AVATAR */
+.perfil-header-form {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.perfil-avatar-preview {
+  width: 92px;
+  height: 92px;
+  border-radius: 18px;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: #777;
+  overflow: hidden;
+}
+
+.perfil-avatar-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.perfil-upload-btn {
+  border: 2px dashed #ccc;
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  background: #fafafa;
+}
+
+/* ✅ JERARQUÍA DE BLOQUES */
+.asistente-form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.asistente-form-section h3 {
+  font-size: 18px;
+  font-weight: 800;
+  border-left: 4px solid #000;
+  padding-left: 10px;
+}
+
+/* ✅ INPUTS PREMIUM */
+.asistente-form-section input,
+.asistente-form-section textarea,
+.asistente-form-section select {
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+}
+
+/* ✅ TEXTO OK */
+.asistente-ok {
+  color: green;
+  font-weight: 700;
+}
+
+/* ✅ FONDO MODERNO, LIMPIO Y CON VIDA */
+.asistente-bg-ultra {
+  min-height: 100vh;
+  background:
+    radial-gradient(600px 300px at 10% 10%, rgba(120, 160, 255, 0.12), transparent 60%),
+    radial-gradient(500px 300px at 90% 80%, rgba(255, 150, 120, 0.10), transparent 60%),
+    linear-gradient(180deg, #f6f7f9 0%, #ffffff 60%);
+}
+
+
+/* 🔥 CARD PREMIUM */
+.ultra-card {
+  border-radius: 28px;
+}
+
+/* 🔥 BLOQUE FOTO VISIBLE */
+.perfil-upload-box-dark {
+  border: 2px dashed #bbb;
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #f8f8f8, #ffffff);
+}
+
+.perfil-upload-btn-visible {
+  display: inline-block;
+  margin-top: 10px;
+  background: #000;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.perfil-upload-btn-visible:hover {
+  opacity: 0.85;
+}
+
+.perfil-upload-sub {
+  font-size: 13px;
+  color: #555;
+  margin-top: 10px;
+}
+
+/* ✅ CONTADOR */
+.portfolio-counter {
+  font-size: 13px;
+  color: #555;
+  margin-top: 6px;
+}
+
+/* ✅ GRID TIPO PINTEREST */
+.portfolio-grid {
+  column-count: 3;
+  column-gap: 14px;
+  margin-top: 24px;
+}
+
+.portfolio-grid img,
+.portfolio-grid video {
+  width: 100%;
+  margin-bottom: 14px;
+  border-radius: 16px;
+  cursor: pointer;
+  break-inside: avoid;
+  transition: transform 0.2s ease;
+}
+
+.portfolio-grid img:hover,
+.portfolio-grid video:hover {
+  transform: scale(1.02);
+}
+
+/* ✅ MODAL PREVIEW */
+.portfolio-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.portfolio-modal img,
+.portfolio-modal video {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 22px;
+}
+
+/* ✅ FOOTER CON DOS BOTONES */
+.dual-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+/* ✅ PASO 3 SIN SCROLL */
+.asistente-card-form.ultra-card {
+  max-height: calc(100vh - 220px);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.asistente-card-form.ultra-card .asistente-form-section {
+  margin: 0;
+}
+
+/* ✅ BLOQUE PREMIUM */
+.premium-box {
+  margin-top: 26px;
+  padding: 22px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #111, #333);
+  color: #fff;
+  text-align: center;
+}
+
+.premium-box h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.premium-box p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.premium-btn {
+  margin-top: 14px;
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ✅ CONTENEDOR PORTFOLIO MÁS PRO */
+.portfolio-grid {
+  column-count: 3;
+  column-gap: 18px;
+  margin-top: 28px;
+}
+
+/* ✅ BLOQUEA SCROLL REAL */
+.asistente-fixed {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ✅ FORMULARIO COMPACTO PREMIUM */
+.asistente-compact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 26px;
+  max-height: calc(100vh - 220px);
+}
+
+.asistente-form-section h4 {
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.asistente-form-section input,
+.asistente-form-section select,
+.asistente-form-section textarea {
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+/* ✅ PREVIEW FOTO MÁS CHICO */
+.perfil-upload-box-dark.compact {
+  padding: 14px;
+}
+
+.perfil-avatar-preview.small {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 8px;
+}
+
+/* ✅ FILA DE WHATSAPP */
+.whatsapp-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.asistente-btn-sec.compact {
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+/* ✅ SECCIÓN ANCHA */
+.asistente-form-section.full {
+  grid-column: span 2;
+}
+
+/* ✅ TEXTO MÁS OSCURO Y LEGIBLE */
+.asistente-card-form,
+.asistente-card-form input,
+.asistente-card-form select,
+.asistente-card-form textarea,
+.asistente-card-form h4,
+.asistente-card-form label,
+.asistente-card-form p {
+  color: #111 !important;
+}
+
+/* ✅ EFECTO CARD FLOTANTE PREMIUM */
+.asistente-card-form.ultra-card {
+  border: 2px solid #000;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+  background: white;
+  position: relative;
+  z-index: 10;
+}
+
+/* ✅ FORMULARIO MÁS PROTAGONISTA */
+.asistente-compact {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+/* ✅ TODO LO INTERACTIVO POR ENCIMA DEL BLUR */
+.asistente-card-form,
+.asistente-footer,
+.asistente-back,
+.asistente-title,
+.asistente-subtitle {
+  position: relative;
+  z-index: 5;
+}
+
+.asistente-footer {
+  margin-top: 20px;
+}
+
+/* ✅ FORZAR VISIBILIDAD DEL BOTÓN VOLVER */
+.asistente-back {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 9999;           /* lo pone por encima de TODO */
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.asistente-back:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+.            
+
+/* =========================================================
+   PANTALLA INTERMEDIA PREMIUM — PASO 3.5 (PORTFOLIO)
+   ========================================================= */
+
+.intermedio-wrap {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #f5f7ff, #fdfcff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.intermedio-content {
+  background: white;
+  padding: 60px 50px;
+  border-radius: 24px;
+  max-width: 640px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  position: relative;
+  z-index: 5;
+}
+
+.intermedio-title {
+  font-size: 48px;
+  font-weight: 900;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.intermedio-subtitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.intermedio-text {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.intermedio-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.intermedio-btn {
+  padding: 16px;
+  border-radius: 14px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.25s ease;
+}
+
+.intermedio-btn.primary {
+  background: #111;
+  color: white;
+}
+
+.intermedio-btn.primary:hover {
+  background: #000;
+  transform: translateY(-2px);
+}
+
+.intermedio-btn.secondary {
+  background: transparent;
+  border: 2px solid #111;
+  color: #111;
+}
+
+.intermedio-btn.secondary:hover {
+  background: #111;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   PASO 4 · PORTFOLIO — ESTILO PREMIUM
+   ========================================================= */
+
+.portfolio-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f4f5ff, #fdfcff);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 16px 80px;
+}
+
+.portfolio-inner {
+  max-width: 1100px;
+  width: 100%;
+  background: white;
+  border-radius: 26px;
+  padding: 32px 28px 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* Título + subtítulo */
+
+.portfolio-title {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: #111;
+}
+
+.portfolio-subtitle {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 18px;
+}
+
+/* Pills de modo */
+
+.portfolio-mode-info {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.mode-pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+}
+
+.mode-pill.active {
+  background: #111;
+  color: white;
+  border-color: #111;
+}
+
+.mode-pill.locked {
+  background: #f4f4f4;
+  color: #888;
+}
+
+/* Builder general */
+
+.portfolio-builder {
+  border-radius: 22px;
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  background: #fafafa;
+}
+
+/* GRID UNIFORME */
+
+.portfolio-grid-uniform {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.portfolio-slot {
+  border-radius: 16px;
+  min-height: 120px;
+  background: white;
+  border: 1px dashed #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-slot.filled {
+  border-style: solid;
+}
+
+.portfolio-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.slot-placeholder {
+  font-size: 12px;
+  color: #777;
+  text-align: center;
+  padding: 4px;
+}
+
+/* BANDEJA Y TACHO */
+
+.portfolio-bottom-area {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 16px;
+  margin-top: 10px;
+}
+
+/* Bandeja */
+
+.portfolio-tray {
+  flex: 1;
+  background: white;
+  border-radius: 18px;
+  padding: 12px 14px;
+  border: 1px solid #e0e0e0;
+}
+
+.tray-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+.tray-header span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #222;
+}
+
+.tray-header small {
+  font-size: 11px;
+  color: #777;
+}
+
+.tray-content {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.tray-empty {
+  font-size: 12px;
+  color: #999;
+}
+
+.tray-item {
+  position: relative;
+  min-width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  flex-shrink: 0;
+}
+
+.tray-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tray-remove {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  border: none;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+/* Tacho */
+
+.portfolio-trash {
+  width: 120px;
+  border-radius: 18px;
+  border: 1px dashed #d33;
+  background: #fff0f0;
+  color: #a11;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+/* Upload y contador */
+
+.portfolio-upload-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.portfolio-counter {
+  font-size: 13px;
+  color: #555;
+}
+
+/* Acciones finales */
+
+.portfolio-actions {
+  margin-top: 22px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.portfolio-skip,
+.portfolio-next {
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.portfolio-skip {
+  background: transparent;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+.portfolio-skip:hover {
+  background: #f4f4f4;
+}
+
+.portfolio-next {
+  background: #111;
+  color: #fff;
+}
+
+.portfolio-next:hover {
+  background: #000;
+}
+
+/* ============================
+   SELECTOR DE MODO PORTFOLIO
+   ============================ */
+
+.portfolio-mode-selector {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.mode-card {
+  background: white;
+  border-radius: 18px;
+  border: 1px solid #ddd;
+  padding: 18px 20px;
+  width: 310px;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.mode-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.mode-card.active {
+  border-color: #000;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+}
+
+.mode-card.locked {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.mode-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mode-title {
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.mode-check {
+  color: #000;
+  font-size: 18px;
+}
+
+.mode-lock {
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+.mode-desc {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #444;
+  line-height: 1.45;
+}
+
+.mode-btn {
+  margin-top: 14px;
+  width: 100%;
+  padding: 10px 0;
+  font-weight: 600;
+  border-radius: 12px;
+  border: none;
+  background: #111;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.mode-btn:hover {
+  opacity: 0.9;
+}
+
+.locked-btn {
+  background: #aaa !important;
+  cursor: default;
+}
+
+/* POPUP PREMIUM */
+.premium-info-pop {
+  position: absolute;
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  max-width: 320px;
+  border: 1px solid #ccc;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  margin-top: 12px;
+  animation: fadeIn 0.25s ease;
+}
+
+.premium-info-pop button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px 0;
+  background: #111;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   FIX DEFINITIVO — TEXTO SELECTOR PORTFOLIO
+   ========================================= */
+
+.mode-card {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #ddd;
+  padding: 18px 20px;
+  width: 310px;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  color: #111 !important; /* 🔥 fuerza color base oscuro */
+}
+
+.mode-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mode-title {
+  font-weight: 800;
+  font-size: 17px;
+  color: #111 !important; /* 🔥 */
+}
+
+.mode-desc {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #333 !important; /* 🔥 */
+  line-height: 1.45;
+}
+
+.mode-card.active {
+  border-color: #000;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+}
+
+.mode-card.locked {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.mode-btn {
+  margin-top: 14px;
+  width: 100%;
+  padding: 10px 0;
+  font-weight: 700;
+  border-radius: 12px;
+  border: none;
+  background: #111;
+  color: #fff !important; /* 🔥 */
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.mode-btn:hover {
+  opacity: 0.9;
+}
+
+.locked-btn {
+  background: #aaa !important;
+  color: #111 !important;
+  cursor: not-allowed;
+}
+
+/* Candado y check visibles */
+.mode-check {
+  color: #000 !important;
+  font-size: 18px;
+}
+
+.mode-lock {
+  color: #111 !important;
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+/* Popup premium */
+.premium-info-pop {
+  position: absolute;
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  max-width: 320px;
+  border: 1px solid #ccc;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  margin-top: 12px;
+  animation: fadeIn 0.25s ease;
+  color: #111 !important;
+  z-index: 999;
+}
+
+.premium-info-pop p {
+  color: #111 !important;
+}
+
+.premium-info-pop button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px 0;
+  background: #111;
+  color: #fff !important;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* ============================
+   POPUP PREMIUM LATERAL (DERECHA)
+   ============================ */
+
+.portfolio-mode-selector-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.premium-side-pop {
+  min-width: 220px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  animation: fadeIn 0.25s ease;
+}
+
+.premium-side-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 12px;
+}
+
+.premium-side-btn {
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 12px;
+  border: none;
+  background: #111;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.premium-side-btn:hover {
+  background: #000;
+}
+
+/* ENVOLTORIO GENERAL */
+.portfolio-mode-selector-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+}
+
+/* POPUP PREMIUM EN HOVER */
+.premium-hover-pop {
+  position: absolute;
+  left: 340px; /* se ubica a la derecha de las tarjetas */
+  top: 0;
+  width: 220px;
+  padding: 18px 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* SOLO EN HOVER SOBRE LA TARJETA DINÁMICA */
+.mode-card.locked {
+  cursor: pointer;   /* ← Esto quita el icono de prohibido */
+  opacity: 0.7;
+}
+
+.premium-side-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 12px;
+}
+
+.premium-side-btn {
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 12px;
+  border: none;
+  background: #111;
+  color: #fff !important;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.premium-side-btn:hover {
+  background: #000;
+}
+
+/* CONTENEDOR GENERAL */
+.portfolio-mode-selector-wrapper {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+/* POPUP PREMIUM */
+.premium-hover-pop {
+  position: absolute;
+  top: 50%;
+  left: 100%;              /* 👉 Exactamente al borde derecho */
+  margin-left: 12px;      /* 👉 Separación justa */
+  transform: translateY(-50%);
+  width: 230px;
+  padding: 18px 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 1000;
+}
+.mode-dinamico-card:hover + .premium-hover-pop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ❤️ REGLA NUEVA QUE FUNCIONA SIEMPRE */
+.portfolio-mode-selector-wrapper:hover .mode-dinamico-card:hover + .premium-hover-pop {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.locked-btn {
+  background: #aaa !important;
+  color: #111 !important;
+  cursor: pointer;
+}
+
+/* Wrapper dinámico */
+.mode-dinamico-wrapper {
+  position: relative;
+}
+
+/* Popup pegado a la tarjeta */
+.premium-hover-pop {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-left: 10px;
+  transform: translateY(-50%);
+  width: 230px;
+  padding: 18px 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 1000;
+}
+
+/* Mostrar SOLO al hacer hover sobre la tarjeta */
+.mode-dinamico-wrapper:hover .premium-hover-pop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ============================
+   GRID DINÁMICO PREMIUM
+   ============================ */
+
+.dynamic-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #333;
+}
+
+.dynamic-toolbar .toolbar-label {
+  font-weight: 600;
+}
+
+.dynamic-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Grilla con tamaños variables */
+.portfolio-grid-dynamic {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 80px;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+/* Slot base */
+.dynamic-slot {
+  border-radius: 16px;
+  background: white;
+  border: 1px dashed #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dynamic-slot.filled {
+  border-style: solid;
+}
+
+.dynamic-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+/* Tamaños */
+.size-small {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.size-medium {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.size-large {
+  grid-column: span 3;
+  grid-row: span 3;
+}
+
+/* Placeholder */
+.dynamic-slot .slot-placeholder {
+  font-size: 11px;
+  color: #777;
+  text-align: center;
+  padding: 4px;
+}
+
+/* Wrapper general */
+.mode-dinamico-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* POPUP – pegado a la derecha realmente */
+.premium-hover-pop {
+  position: absolute;
+  top: 50%;
+  left: calc(100% - 10px); /* 🔥 PEGADO A LA TARJETA */
+  transform: translateY(-50%);
+  padding: 18px 20px;
+  width: 210px;
+
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 2000;
+}
+
+/* 🔥 PUENTE INVISIBLE PARA QUE NO SE CIERRE CUANDO MOVÉS EL MOUSE */
+.mode-dinamico-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 40px; /* puente más ancho */
+  height: 100%;
+  pointer-events: auto;
+}
+
+/* Cuando paso por la tarjeta */
+.mode-dinamico-card:hover + .premium-hover-pop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Cuando paso por el popup */
+.premium-hover-pop:hover {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* =================================
+   COLLAGE ADAPTATIVO REAL
+   ================================= */
+
+.portfolio-grid-dynamic {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: dense;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+/* BLOQUE BASE */
+.dynamic-slot {
+  border-radius: 18px;
+  background: #fafafa;
+  border: 1px dashed rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: 0.2s ease;
+}
+
+.dynamic-slot:hover {
+  border-color: #000;
+}
+
+.dynamic-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* ===== TAMAÑOS BASE ===== */
+
+.size-small {
+  grid-column: span 1;
+}
+
+.size-medium {
+  grid-column: span 2;
+}
+
+.size-large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* ===== ORIENTACIÓN AUTOMÁTICA ===== */
+
+/* Vertical = 1 columna, más alto */
+.img-vertical {
+  aspect-ratio: 2 / 3;
+}
+
+/* Horizontal = más ancho */
+.img-horizontal {
+  aspect-ratio: 16 / 10;
+  grid-column: span 2;
+}
+
+/* Cuadrada = balance */
+.img-square {
+  aspect-ratio: 1 / 1;
+}
+
+/* Placeholder elegante */
+.dynamic-slot .slot-placeholder {
+  font-size: 12px;
+  color: #555;
+  text-align: center;
+  padding: 6px 10px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* =================================
+   FIX DEFINITIVO TAMAÑO DE IMÁGENES
+   EN GRID DINÁMICO (ANTI-DESBORDE)
+   ================================= */
+
+/* Grid dinámico más estable */
+.portfolio-grid-dynamic {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: dense;
+  gap: 14px;
+  margin-bottom: 22px;
+  align-items: start;
+}
+
+/* Slot base con ALTURA CONTROLADA */
+.dynamic-slot {
+  border-radius: 18px;
+  background: #fafafa;
+  border: 1px dashed rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: 0.2s ease;
+
+  /* 🔥 CLAVE: evita que una imagen gigante rompa todo */
+  max-height: 260px;
+}
+
+/* Tamaños con límites reales */
+.size-small {
+  grid-column: span 1;
+  max-height: 160px;
+}
+
+.size-medium {
+  grid-column: span 2;
+  max-height: 220px;
+}
+
+.size-large {
+  grid-column: span 2;
+  grid-row: span 2;
+  max-height: 320px;
+}
+
+/* ✅ IMAGEN SIEMPRE CONTENIDA */
+.dynamic-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* 🔥 nunca estira mal */
+  border-radius: 16px;
+  max-height: 100%;
+}
+
+/* ✅ ORIENTACIÓN AUTOMÁTICA — SIN DESBORDE */
+.img-vertical {
+  aspect-ratio: 3 / 4;
+}
+
+.img-horizontal {
+  aspect-ratio: 16 / 10;
+}
+
+.img-square {
+  aspect-ratio: 1 / 1;
+}
+
+/* Placeholder elegante */
+.dynamic-slot .slot-placeholder {
+  font-size: 12px;
+  color: #555;
+  text-align: center;
+  padding: 6px 10px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* =============================
+   PORTFOLIO CONTROLS SUPERIORES
+   ============================= */
+
+.portfolio-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.portfolio-count {
+  font-size: 14px;
+  color: #555;
+  margin-left: 8px;
+}
+
+.portfolio-trash {
+  margin-left: auto;
+  padding: 8px 14px;
+  background: #ffebeb;
+  border: 1px solid #f3b5b5;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* =============================
+   BANDEJA SUPERIOR
+   ============================= */
+
+.portfolio-tray {
+  background: #f7f7f7;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 22px;
+}
+
+.tray-header {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.tray-content {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tray-item {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: grab;
+}
+
+/* =============================
+   PORTFOLIO DINÁMICO PREMIUM
+   ============================= */
+
+.portfolio-masonry {
+  column-count: 3;         /* 🔥 MASONRY REAL */
+  column-gap: 16px;
+}
+
+.masonry-item {
+  break-inside: avoid;      /* 🔥 EVITA CORTES */
+  margin-bottom: 16px;
+  cursor: grab;
+}
+
+.masonry-item img {
+  width: 100%;
+  height: auto;             /* 🔥 proporción real */
+  border-radius: 12px;
+  display: block;
+}
+
+/* Control de tamaños automáticos por columnas */
+.col-1 { width: 100%; }
+.col-2 { width: 100%; }   /* en masonry, se mantiene fluido */
+.col-3 { width: 100%; }
+
+/* =============================
+   PORTFOLIO UNIFORME (FREE)
+   ============================= */
+
+.portfolio-uniform {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.uniform-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.portfolio-drop-placeholder {
+  width: 100%;
+  min-height: 180px;
+  border: 2px dashed #bbb;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  background: rgba(250,250,250,0.5);
+}
+
+/* ===========================
+   MODO UNIFORME (FREE)
+   =========================== */
+
+.portfolio-uniform {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.uniform-item {
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* 🔥 TODAS CUADRADAS */
+  overflow: hidden;
+  border-radius: 10px;
+  background: #f1f1f1;
+}
+
+.uniform-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* 🔒 SIEMPRE MISMO TAMAÑO */
+  display: block;
+}
+
+/* ===========================
+   MODO DINÁMICO (PREMIUM)
+   =========================== */
+
+.portfolio-masonry {
+  column-count: 3;
+  column-gap: 16px;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 16px;
+}
+
+.masonry-item img {
+  width: 100%;
+  height: auto;        /* ✅ RESPETA PROPORCIÓN REAL */
+  border-radius: 12px;
+  display: block;
+}
+
+/* ===========================
+   FORZAR SEPARACIÓN DE MODOS
+   =========================== */
+
+/* === MODO UNIFORME (FREE) === */
+.portfolio-uniform {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+  gap: 14px !important;
+  column-count: unset !important;
+  column-gap: unset !important;
+}
+
+.portfolio-uniform .uniform-item {
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* TODAS CUADRADAS */
+  overflow: hidden;
+  border-radius: 10px;
+  background: #eaeaea;
+}
+
+.portfolio-uniform .uniform-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* TODAS IGUALES */
+}
+
+/* === MODO DINÁMICO (PREMIUM) === */
+.portfolio-masonry {
+  column-count: 3;
+  column-gap: 18px;
+}
+
+.portfolio-masonry .masonry-item {
+  break-inside: avoid;
+  margin-bottom: 18px;
+}
+
+.portfolio-masonry .masonry-item img {
+  width: 100%;
+  height: auto;         /* PROPORCIÓN REAL */
+  border-radius: 12px;
+  display: block;
+}
+
+/* ===========================
+   BOTÓN SUBIR IMÁGENES (FINAL)
+   =========================== */
+
+.portfolio-upload-btn {
+  background: linear-gradient(135deg, #111, #333);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.portfolio-upload-btn:hover {
+  background: linear-gradient(135deg, #000, #222);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+/* ============================= */
+/*      TOAST GLOBAL ARRIBA      */
+/* ============================= */
+
+/* Animación elegante */
+@keyframes toastFade {
+  0% { opacity: 0; transform: translate(-50%, -10px); }
+  10% { opacity: 1; transform: translate(-50%, 0px); }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Fondo limpio + blur elegante */
+.asistente-blur-bg {
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(240, 240, 240, 0.65);
+  backdrop-filter: blur(6px);
+}
+
+/* Caja centrada */
+.intermedio-box {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 18px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Textos */
+.intermedio-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.intermedio-subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.intermedio-text {
+  margin-bottom: 25px;
+  line-height: 1.4;
+  color: #555;
+}
+
+/* Botones */
+.intermedio-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.intermedio-btn {
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s;
+}
+
+.intermedio-btn.primary {
+  background: #0077ff;
+  color: white;
+}
+
+.intermedio-btn.primary:hover {
+  background: #0062d6;
+}
+
+.intermedio-btn.secondary {
+  background: #eaeaea;
+  color: #333;
+}
+
+.intermedio-btn.secondary:hover {
+  background: #d6d6d6;
+}
+
+.upload-light {
+  background: #ffffff !important;
+  color: #333 !important;
+  border: 1px solid #ccc;
+}
+
+.upload-light:hover {
+  background: #f2f2f2 !important;
+}
+
+.premium-card {
+  background: #fff7e6;
+  border-left: 5px solid #ffb400;
+}
+
+.premium-list {
+  text-align: left;
+  margin: 15px 0;
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+.premium-upgrade-btn {
+  background: #ffb400 !important;
+  color: #333 !important;
+}
+
+.premium-upgrade-btn:hover {
+  background: #e09f00 !important;
+}
+
+/* CONFIGURACIÓN */
+.config-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.config-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  margin-bottom: 25px;
+}
+
+.config-card h3 {
+  margin-bottom: 10px;
+}
+
+.config-card input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+}
+
+.config-btn {
+  width: 100%;
+  padding: 12px;
+  background: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.config-btn:hover {
+  background: #005fd1;
+}
+
+.config-card.danger {
+  border-left: 4px solid #ff4d4d;
+}
+
+.config-btn-danger {
+  width: 100%;
+  padding: 12px;
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.config-btn-danger:hover {
+  background: #d93636;
+}
+
+/* Toast arriba */
+.toast.top {
+  top: 20px !important;
+  bottom: auto !important;
+}
+
+.professional-panel {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.panel-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.panel-card h2,
+.panel-card h3 {
+  margin-bottom: 10px;
+}
+
+.panel-card p {
+  margin-bottom: 15px;
+  color: #444;
+}
+
+/* ============================= */
+/*        MI CUENTA (LIGHT)      */
+/* ============================= */
+
+.account-overlay-light {
+  min-height: 100vh;
+  background: #f4f6f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+}
+
+.account-panel {
+  background: #ffffff;
+  width: 100%;
+  max-width: 640px; /* ⬅️ MÁS ANCHO */
+  padding: 3rem 2.8rem; /* ⬅️ MÁS AIRE */
+  border-radius: 20px;
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.14);
+  text-align: center;
+}
+
+/* TITULOS */
+.account-title {
+  font-size: 1.9rem; /* ⬅️ MÁS GRANDE */
+  color: #111;
+  margin-bottom: 0.6rem;
+}
+
+.account-subtitle {
+  font-size: 1.05rem; /* ⬅️ MÁS LEGIBLE */
+  color: #444;
+  margin-bottom: 2rem;
+}
+
+/* INFO */
+.account-info {
+  font-size: 1rem;
+  color: #222;
+  margin-bottom: 2rem;
+}
+
+/* INVITACIÓN PROFESIONAL */
+.account-highlight {
+  background: #eef5ff;
+  border: 1px solid #d2e4ff;
+  border-radius: 16px;
+  padding: 1.6rem 1.6rem;
+  margin-bottom: 2.2rem;
+}
+
+.account-highlight h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.4rem;
+  color: #0b4fd8;
+}
+
+.account-highlight p {
+  font-size: 1rem;
+  color: #222;
+  margin-bottom: 1.1rem;
+}
+
+/* BOTÓN PRINCIPAL */
+.account-primary-btn {
+  background: #0b4fd8;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.account-primary-btn:hover {
+  background: #083ea8;
+}
+
+/* BOTONES */
+.account-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.account-btn {
+  padding: 0.9rem 1.2rem;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #111;
+}
+
+.account-btn:hover {
+  background: #f1f1f1;
+}
+
+.account-btn.danger {
+  border-color: #e53935;
+  color: #e53935;
+  background: #fff;
+}
+
+.account-btn.danger:hover {
+  background: #ffecec;
+}
+
+/* VOLVER */
+.account-back {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+/* ============================= */
+/*        DASHBOARD (LIGHT)      */
+/* ============================= */
+
+.dashboard-overlay-light {
+  min-height: 100vh;
+  background: #f4f6f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+}
+
+.dashboard-panel {
+  background: #ffffff;
+  width: 100%;
+  max-width: 640px;
+  padding: 3rem 2.8rem;
+  border-radius: 20px;
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.14);
+  text-align: center;
+}
+
+.dashboard-title {
+  font-size: 1.9rem;
+  color: #111;
+  margin-bottom: 0.6rem;
+}
+
+.dashboard-subtitle {
+  font-size: 1.05rem;
+  color: #444;
+  margin-bottom: 2rem;
+}
+
+/* BLOQUE DESTACADO */
+.dashboard-highlight {
+  background: #eef5ff;
+  border: 1px solid #d2e4ff;
+  border-radius: 16px;
+  padding: 1.6rem;
+  margin-bottom: 2.2rem;
+}
+
+.dashboard-highlight h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.4rem;
+  color: #0b4fd8;
+}
+
+.dashboard-highlight p {
+  font-size: 1rem;
+  color: #222;
+  margin-bottom: 1.1rem;
+}
+
+.dashboard-highlight.premium {
+  background: #fff7e6;
+  border-color: #ffe1a6;
+}
+
+.dashboard-highlight.premium h3 {
+  color: #c47b00;
+}
+
+/* BOTÓN PRINCIPAL */
+.dashboard-primary-btn {
+  background: #0b4fd8;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dashboard-primary-btn:hover {
+  background: #083ea8;
+}
+
+.dashboard-primary-btn.premium {
+  background: #f5a623;
+}
+
+.dashboard-primary-btn.premium:hover {
+  background: #d48806;
+}
+
+/* ACCIONES */
+.dashboard-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dashboard-btn {
+  padding: 0.9rem 1.2rem;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #111;
+}
+
+.dashboard-btn:hover {
+  background: #f1f1f1;
+}
+
+.dashboard-btn.danger {
+  border-color: #e53935;
+  color: #e53935;
+  background: #fff;
+}
+
+.dashboard-btn.danger:hover {
+  background: #ffecec;
+}
+
+/* ============================= */
+/* PASO 3: MÁS ESPACIO ABAJO SIN ROMPER LAYOUT */
+/* ============================= */
+
+.asistente-paso3 .asistente-paso3-card {
+  padding-bottom: 110px; /* 🔥 más aire abajo para que no quede “apretado” */
+}
+
+/* Ajuste suave del espacio entre bloques SOLO en Paso 3 */
+.asistente-paso3 .asistente-form-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px; /* bajá/subí este número si querés más/menos aire */
+}
+
+.profile-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.account-avatar-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.account-avatar,
+.account-avatar-placeholder {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #ddd;
+}
+
+.descripcion-wrapper {
+  position: relative;
+}
+
+/* ===== FIX GLOBAL OVERFLOW HORIZONTAL ===== */
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.layout-container,
+.main-content,
+.feed-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.perfil-card {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===== CENTRADO VISUAL DEL CONTENIDO ===== */
+
+.main-content {
+  display: flex;
+  justify-content: center;
+}
+
+.feed-wrapper {
+  width: 100%;
+  max-width: 1200px;   /* o el ancho que vos quieras */
+  margin: 0 auto;
+}
+
+.portfolio-upgrade-hint {
+  background: #f4f0ff;
+  border: 1px dashed #a88bff;
+  color: #4b2aad;
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+
+/* ========================= */
+/* BUSCAR / FEED */
+/* ========================= */
+
+.buscar-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.buscar-hero {
+  margin-bottom: 40px;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.buscar-hero h1 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.buscar-hero p {
+  color: #555;
+  max-width: 600px;
+}
+
+.buscar-feed {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.buscar-card {
+  display: flex;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 10px;
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.buscar-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+.buscar-avatar img,
+.avatar-placeholder {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.buscar-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.buscar-categorias {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.buscar-ubicacion,
+.buscar-modalidad {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* ========================= */
+/* FEED CONTAINER */
+/* ========================= */
+
+.feed-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* ========================= */
+/* FEED REAL */
+/* ========================= */
+
+.feed-real {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* ========================= */
+/* CARD PERFIL */
+/* ========================= */
+
+.feed-card {
+  display: flex;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feed-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* ========================= */
+/* AVATAR */
+/* ========================= */
+
+.feed-avatar img,
+.avatar-placeholder {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #555;
+}
+
+/* ========================= */
+/* INFO PERFIL */
+/* ========================= */
+
+.feed-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.feed-categorias {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 4px 0;
+}
+
+.feed-ubicacion,
+.feed-modalidad {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* ========================= */
+/* CTA ABAJO */
+/* ========================= */
+
+.feed-cta {
+  margin-top: 40px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.feed-empty-btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.feed-empty-btn.secondary {
+  background: #f0f0f0;
+  color: #000;
+}
+
+/* ========================= */
+/* HERO SUPERIOR MEJORADO */
+/* ========================= */
+
+.feed-hero h2 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+  color: #111;
+  line-height: 1.15;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+}
+
+.feed-hero p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #333;
+  max-width: 720px;
+  margin: 0 auto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+}
+
+@media (max-width: 768px) {
+  .feed-hero {
+    transform: none;
+  }
+}
+
+/* ===========================
+   FIX DEFINITIVO PARED BLANCA
+   =========================== */
+
+/* El main ya NO empuja el layout con margen */
+.main-content {
+  margin-left: 0 !important;
+}
+
+/* Evita que el contenedor padre tape el feed */
+.main-content {
+  background: transparent !important;
+}
+
+/* El feed sigue siendo blanco y centrado */
+.feed-wrapper {
+  background: #ffffff;
+}
+
+/* ===========================
+   CENTRADO CORRECTO DEL FEED
+   =========================== */
+
+/* El main se separa del sidebar SIN tapar contenido */
+.main-content {
+  padding-left: 220px;
+  background: transparent !important;
+}
+
+/* Sidebar colapsado */
+.sidebar.closed ~ .main-content {
+  padding-left: 60px;
+}
+
+/* Feed real centrado */
+.feed-wrapper {
+  margin: 0 auto;
+}
+
+/* ===========================
+   CENTRADO MATEMÁTICO REAL
+   =========================== */
+
+.feed-wrapper {
+  margin-left: calc(50% - 600px + 110px);
+  margin-right: auto;
+}
+
+/* ===========================
+   FIX OVERFLOW QUE CORTA CARDS
+   =========================== */
+
+/* Permitimos overflow horizontal real */
+.main-content,
+.feed-wrapper {
+  overflow-x: visible !important;
+}
+
+/* El body sigue sin scroll horizontal */
+html, body {
+  overflow-x: hidden;
+}
+
+/* ===========================
+   GRID RESPONSIVE REAL
+   =========================== */
+
+.feed-grid {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 300px), 1fr)
+  );
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding-left: 0 !important;
+  }
+
+  .feed-wrapper {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* ===========================
+   AJUSTE FINO DE TEXTO (FEED)
+   =========================== */
+
+   /* ===========================
+   AJUSTE TEXTO FEED REAL
+   =========================== */
+
+.feed-info {
+  padding-left: 0.6rem; /* ajustá: 0.4rem – 1rem */
+}
+
+/* =========================
+   SOLICITUD DE CATEGORÍA
+========================= */
+
+.asistente-request-text {
+  color: #111827; /* gris casi negro */
+  opacity: 1;
+  font-weight: 500;
+}
+
+/* =========================
+   MODAL SOLICITUD ENVIADA
+========================= */
+
+.asistente-modal h2 {
+  color: #111827;
+  opacity: 1;
+}
+
+.asistente-modal p {
+  color: #374151; /* gris oscuro legible */
+  opacity: 1;
+  line-height: 1.5;
+}
+
+/* ===== MODAL SOLICITUD CATEGORÍA ===== */
+
+.request-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.request-modal {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 32px 36px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  text-align: center;
+  color: #111827; /* 🔑 evita transparencia */
+}
+
+.request-modal h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+.request-modal p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #374151;
+  margin-bottom: 22px;
+}
+
+.request-modal button {
+  margin-top: 12px;
+}
+
+/* Texto de solicitud de categoría */
+.asistente-request-text {
+  color: #374151; /* gris oscuro legible */
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+/* Modal de éxito */
+.asistente-modal {
+  color: #111827; /* casi negro */
+}
+
+html, body {
+  background-color: #f5f6f8;
+}
+
+.toast-global {
+  position: fixed !important;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: inline-flex !important;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px 18px;
+  max-width: 420px;
+  width: auto !important;
+  height: auto !important;
+
+  background: #111;
+  color: #fff;
+
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+
+  border-radius: 14px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+
+  z-index: 9999;
+
+  pointer-events: none;
+
+  opacity: 0;
+  animation: toast-in 0.25s ease forwards;
+}
+
+.toast-icon {
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.toast-message {
+  flex: 1;
+  white-space: normal;
+}
+
+/* Tipos */
+.toast-success {
+  background: #0f766e;
+}
+
+.toast-error {
+  background: #991b1b;
+}
+
+.toast-info {
+  background: #1f2937;
+}
+
+/* Animación */
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ================= CONFIGURACIONES ================= */
+
+.config-section {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.config-title {
+  margin-bottom: 0.8rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.config-input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+.config-input:focus {
+  outline: none;
+  border-color: #999;
+}
+
+/* Contador lateral de Home */
+.home-professionals-counter {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px 18px;
+  min-width: 200px;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  z-index: 2;
+}
+
+.home-counter-label {
+  font-size: 0.8rem;
+  color: #444;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.home-counter-number {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #000;
+  line-height: 1;
+}
+
+/* Mobile: baja y no tapa nada */
+@media (max-width: 768px) {
+  .home-professionals-counter {
+    position: static;
+    margin: 0 auto 16px auto;
+  }
+}
+
+.feed-wrapper {
+  position: relative;
+}
+
+/* Da contexto al contador */
+.feed-wrapper {
+  position: relative;
+}
+
+/* Contador lateral */
+.home-professionals-counter {
+  position: absolute;
+  right: 80px;
+  top: 250px;
+  transform: scale(1.5);
+
+
+  background: #E6F4EA;
+  border-radius: 14px;
+  padding: 16px 18px;
+  min-width: 200px;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  z-index: 2;
+}
+
+.home-counter-label {
+  font-size: 0.8rem;
+  color: #444;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.home-counter-number {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #000;
+  line-height: 1;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .home-professionals-counter {
+    position: static;
+    margin: 0 auto 16px auto;
+  }
+}
+
+/* =========================
+   ADMIN REPORTES
+========================= */
+
+.admin-page {
+  padding: 32px;
+}
+
+.admin-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+/* GRID DE REPORTES */
+.admin-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 20px;
+}
+
+/* CARD */
+.admin-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 22px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* HEADER CARD */
+.admin-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* BADGE MOTIVO */
+.admin-badge {
+  background: #fee2e2;
+  color: #991b1b;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+/* FECHA */
+.admin-date {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* SECCIONES */
+.admin-card-section {
+  font-size: 14px;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-card-section strong {
+  font-weight: 600;
+}
+
+/* LINK PERFIL */
+.admin-link {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 500;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.admin-link:hover {
+  text-decoration: underline;
+}
+
+/* DESCRIPCIÓN */
+.admin-description {
+  font-size: 14px;
+  color: #374151;
+  font-style: italic;
+  background: #f9fafb;
+  padding: 12px 14px;
+  border-radius: 10px;
+}
+
+/* FOOTER */
+.admin-card-footer {
+  margin-top: 6px;
+}
+
+/* ESTADO CUENTA */
+.admin-status {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.admin-status.active {
+  color: #065f46;
+}
+
+.admin-status.suspended {
+  color: #991b1b;
+}

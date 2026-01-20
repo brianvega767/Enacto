@@ -1,0 +1,659 @@
+.perfil-fullscreen {
+  background: linear-gradient(180deg, #f1f3f6 0%, #ffffff 100%);
+  min-height: 100vh;
+}
+
+.perfil-card {
+  background: transparent;
+  padding: 30px 40px;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* BANNER */
+.perfil-banner {
+  height: 240px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+.perfil-banner-default {
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.15), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1), transparent 40%),
+    linear-gradient(135deg, #2b2e4a, #3b3f66);
+}
+
+/* CABECERA */
+.perfil-header-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.perfil-avatar-left {
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #6a5acd, #00bcd4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.perfil-avatar-left img {
+  width: 130px;
+  height: 130px;
+  border-radius: 16px;
+  object-fit: cover;
+  background: #fff;
+}
+
+.perfil-header-info {
+  background: white;
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  flex: 1;
+}
+
+.perfil-business { font-size: 30px; color: #111; }
+.perfil-realname { color: #444; margin-top: 4px; }
+.perfil-modalidad { margin-top: 10px; }
+.perfil-location { margin-top: 10px; }
+
+.perfil-redes { display: flex; gap: 14px; margin-top: 12px; }
+
+/* SECCIONES */
+.perfil-section-card {
+  background: white;
+  border-radius: 16px;
+  padding: 22px 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.perfil-descripcion { color: #111; }
+
+/* TAGS */
+.perfil-tags { gap: 8px; display: flex; flex-wrap: wrap; margin-top: 10px; }
+.perfil-tags span {
+  background: #eceef4;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+/* === PINTEREST GRID === */
+.perfil-masonry {
+  column-count: 3;
+  column-gap: 16px;
+}
+
+@media (max-width: 1000px) {
+  .perfil-masonry { column-count: 2; }
+}
+
+@media (max-width: 600px) {
+  .perfil-masonry { column-count: 1; }
+}
+
+.perfil-masonry img {
+  width: 100%;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.perfil-masonry img:hover {
+  transform: scale(1.02);
+}
+
+/* === LIGHTBOX === */
+.perfil-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.perfil-lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+}
+
+.perfil-lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: white;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* 🔥 FIX DEFINITIVO: CATEGORÍAS Y SUBCATEGORÍAS LEGIBLES */
+.perfil-tags {
+  color: #111 !important;
+  font-weight: 500;
+}
+
+.perfil-tags strong {
+  color: #000 !important;
+  font-weight: 700;
+}
+
+.perfil-tags span {
+  background: #e3e6f0 !important;
+  color: #111 !important;
+  font-weight: 500;
+}
+
+/* 🔥 FIX DEFINITIVO: TÍTULO PORTFOLIO LEGIBLE */
+.perfil-portfolio-title {
+  color: #111 !important;
+  font-weight: 700;
+  opacity: 1 !important;
+}
+
+/* =========================
+   MODO EDICIÓN PERFIL
+========================= */
+
+.editar-perfil {
+  color: #222;
+}
+
+.editar-perfil h1,
+.editar-perfil h2,
+.editar-perfil h3,
+.editar-perfil p,
+.editar-perfil span {
+  color: #222 !important;
+  opacity: 1 !important;
+}
+
+.editar-perfil .perfil-descripcion {
+  color: #333;
+}
+
+.editar-perfil .perfil-location {
+  color: #444;
+}
+
+/* Botones edición inline */
+
+.edit-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+.edit-btn {
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.edit-btn.save {
+  background: #222;
+  color: #fff;
+}
+
+.edit-btn.save:hover {
+  background: #000;
+}
+
+.edit-btn.cancel {
+  background: transparent;
+  color: #666;
+}
+
+.edit-btn.cancel:hover {
+  color: #000;
+}
+
+/* ============================= */
+/* PERFIL PÚBLICO (NORMAL) */
+/* ============================= */
+
+.perfil-card {
+  color: #111;
+}
+
+.perfil-card h1,
+.perfil-card h2,
+.perfil-card h3,
+.perfil-card p,
+.perfil-card span {
+  color: inherit;
+  opacity: 1;
+}
+
+/* ============================= */
+/* SOLO MODO EDICIÓN */
+/* ============================= */
+
+.editar-perfil input,
+.editar-perfil textarea,
+.editar-perfil select {
+  background: #fff;
+  color: #111;
+}
+
+.editar-perfil .perfil-descripcion {
+  opacity: 1;
+}
+
+/* Botones edición */
+.edit-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.edit-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+}
+
+.edit-btn.save {
+  background: #111;
+  color: #fff;
+}
+
+.edit-btn.cancel {
+  background: #e5e5e5;
+  color: #111;
+}
+
+/* ===============================
+   ESCALA GENERAL
+================================ */
+.perfil-card-large {
+  padding-bottom: 3rem;
+}
+
+.perfil-section-large {
+  margin-top: 1.8rem;
+  padding: 1.6rem;
+}
+
+.perfil-section-label {
+  display: block;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #222;
+  margin-bottom: 0.6rem;
+}
+
+/* ===============================
+   TEXTO GRANDE
+================================ */
+.perfil-business-large {
+  font-size: 2rem;
+}
+
+.perfil-modalidad-large span {
+  font-size: 1rem;
+}
+
+.perfil-location-large {
+  font-size: 1rem;
+}
+
+.perfil-text-large {
+  font-size: 1rem;
+}
+
+.perfil-descripcion-large {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.perfil-portfolio-title-large {
+  font-size: 1.4rem;
+}
+
+/* ===============================
+   CATEGORÍAS / SUBCATEGORÍAS
+================================ */
+.perfil-categorias,
+.perfil-subcategorias {
+  margin-bottom: 1rem;
+}
+
+.perfil-categorias-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.perfil-chip {
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  background: #f0f0f0;
+  color: #222;
+}
+
+.perfil-chip.categoria {
+  background: #e6f0ff;
+  color: #1a4fd8;
+}
+
+.perfil-chip.subcategoria {
+  background: #f4f4f4;
+  color: #444;
+}
+
+/* ===============================
+   BOTÓN WHATSAPP
+================================ */
+.perfil-whatsapp-btn {
+  margin-top: 0.8rem;
+  display: inline-block;
+  background: #25d366;
+  color: #fff;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ===============================
+   PERFIL MÁS ANCHO
+================================ */
+.perfil-card-wide {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ===============================
+   CATEGORÍAS EN BLOQUES
+================================ */
+.perfil-categorias-grid {
+  margin-top: 2rem;
+}
+
+.perfil-section-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: #222;
+}
+
+.perfil-categorias-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.6rem;
+}
+
+.perfil-categoria-block {
+  background: #f9f9f9;
+  padding: 1.2rem;
+  border-radius: 12px;
+}
+
+.perfil-categoria-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  color: #111;
+}
+
+.perfil-subcategorias-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.perfil-chip {
+  background: #e9ecff;
+  color: #2a3cff;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.perfil-edit-link {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  color: #2563eb; /* azul suave */
+  background: #eef2ff; /* fondo sutil */
+  border: 1px solid #c7d2fe;
+  border-radius: 6px;
+
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.perfil-edit-link:hover {
+  background: #e0e7ff;
+  color: #1e40af;
+  border-color: #a5b4fc;
+}
+
+.perfil-edit-link svg {
+  opacity: 0.8;
+}
+
+.descripcion-wrapper {
+  position: relative;
+}
+
+.perfil-card {
+  overflow-x: hidden;
+}
+
+/* ===== DESCRIPCIÓN EDITABLE (FIX DEFINITIVO) ===== */
+
+.descripcion-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.descripcion-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 110px;     /* apenas más grande */
+  resize: vertical;
+  padding-bottom: 28px;
+}
+
+.descripcion-counter {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  font-size: 12px;
+  color: #777;
+  background: rgba(255,255,255,0.85);
+  padding: 2px 6px;
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+/* ===== PORTFOLIO GRID ===== */
+
+.perfil-portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.perfil-portfolio-item {
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #f4f4f4;
+}
+
+.perfil-portfolio-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.perfil-portfolio-masonry {
+  margin-top: 16px;
+  column-count: 3;
+  column-gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .perfil-portfolio-masonry {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 500px) {
+  .perfil-portfolio-masonry {
+    column-count: 1;
+  }
+}
+
+.perfil-portfolio-masonry img {
+  width: 100%;
+  margin-bottom: 12px;
+  border-radius: 14px;
+  cursor: pointer;
+  break-inside: avoid;
+  transition: transform 0.2s ease;
+}
+
+.perfil-portfolio-masonry img:hover {
+  transform: scale(1.02);
+}
+
+/* ===============================
+   AVATAR FALLBACK (INICIAL + COLOR)
+   Mantiene el mismo look que la imagen (130x130, bordes 16px)
+================================ */
+
+.perfil-avatar-left .avatar-placeholder {
+  width: 130px;
+  height: 130px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* tipografía similar a un avatar */
+  font-weight: 800;
+  font-size: 52px;
+  letter-spacing: 1px;
+  color: #111;
+
+  /* que se vea limpio sobre pastel */
+  background: #e6e6fa;
+  user-select: none;
+}
+
+/* ===============================
+   AVATAR FALLBACK (INICIAL + COLOR)
+   Solo para PERFIL PÚBLICO
+================================ */
+
+.perfil-avatar-left .avatar-placeholder {
+  width: 130px;
+  height: 130px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 800;
+  font-size: 52px;
+  letter-spacing: 1px;
+  color: #111;
+
+  user-select: none;
+}
+
+/* ===== Menú denunciar perfil ===== */
+.perfil-menu-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.perfil-menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #555;
+}
+
+.perfil-menu-dropdown {
+  position: absolute;
+  right: 0;
+  top: 24px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  padding: 6px;
+  z-index: 10;
+}
+
+.perfil-menu-item {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #b91c1c;
+  width: 100%;
+  border-radius: 6px;
+}
+
+.perfil-menu-item:hover {
+  background: #fee2e2;
+}
+
+.perfil-menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;          /* antes 4px */
+  color: #333;           /* más contraste */
+  transform: scale(1.2); /* agranda visualmente */
+}
+
+.perfil-menu-btn:hover {
+  background: #f3f4f6;
+  border-radius: 999px;
+}
+
+.perfil-menu-btn {
+  transform: scale(1.35);
+}

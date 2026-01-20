@@ -1,0 +1,120 @@
+/* 🔒 VISTA AISLADA – TAPA TODO EL LAYOUT */
+.denuncia-wrapper {
+  position: fixed;
+  inset: 0;                 /* top, right, bottom, left = 0 */
+  background: #f9fafb;      /* fondo limpio */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;              /* por encima del layout */
+  padding: 32px;
+}
+
+/* 🔥 CARD GRANDE Y PROTAGONISTA */
+.denuncia-card {
+  width: 100%;
+  max-width: 820px;
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 56px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+  color: #111;
+}
+
+/* ===== TÍTULOS ===== */
+.denuncia-card h1 {
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.denuncia-subtitle {
+  font-size: 17px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.denuncia-profile-name {
+  display: block;
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+/* ===== FORM ===== */
+.denuncia-card label {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 26px;
+}
+
+.denuncia-card select,
+.denuncia-card textarea {
+  width: 100%;
+  margin-top: 10px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  border: 1px solid #d1d5db;
+  font-size: 17px;
+  color: #111;
+  background: #fff;
+}
+
+.denuncia-card textarea {
+  resize: none;
+  line-height: 1.6;
+}
+
+/* ===== CONTADOR ===== */
+.denuncia-counter {
+  margin-top: 8px;
+  font-size: 14px;
+  text-align: right;
+  color: #666;
+}
+
+/* ===== ACCIONES ===== */
+.denuncia-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  gap: 20px;
+}
+
+/* 🔥 BOTONES GRANDES */
+.denuncia-btn {
+  padding: 16px 36px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 17px;
+  background: #111827;
+  color: #ffffff;
+}
+
+.denuncia-btn.secondary {
+  background: #f3f4f6;
+  color: #111;
+}
+
+.denuncia-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===== FEEDBACK ===== */
+.denuncia-error {
+  color: #dc2626;
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.denuncia-success {
+  margin-top: 24px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #065f46;
+}
