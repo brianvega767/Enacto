@@ -1,98 +1,30 @@
+/* =========================
+   SIDEBAR BASE (DESKTOP)
+   ========================= */
+
 .sidebar {
   position: fixed;
-  top: 130px;              /* ⬅️ BAJA EL SIDEBAR DEBAJO DEL HEADER */
+  top: 70px;
   left: 0;
+  width: 220px;
   height: calc(100vh - 130px);
+
   background: #eef5ffa8;
   border-right: 1px solid #ddd;
-  padding-top: 20px;
-  transition: width 0.3s ease;
-  overflow: hidden;
+
+  padding: 60px 12px;
   z-index: 900;
 }
-
-.sidebar.open {
-  width: 220px;
-}
-
-.sidebar.closed {
-  width: 60px;
-}
-
-/* ✅ BOTÓN DENTRO DEL SIDEBAR */
-.sidebar-toggle-inside {
-  position: absolute;
-  top: 16px;           /* 👈 BAJADO */
-  right: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-
-  background: #111;
-  color: white;
-  border-radius: 8px;
-  padding: 4px 10px;
-
-  user-select: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: 0.2s ease;
-}
-
-
-.sidebar-toggle-inside:hover {
-  background: #000;
-}
-
 
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding-left: 1rem;
-  padding-top: 24px;
+  gap: 14px;
 }
 
-.sidebar.closed .sidebar-nav a {
-  font-size: 0;
-}
-
-.sidebar a {
-  text-decoration: none;
-  color: #333;
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.sidebar-link-button {
-  background: #f0f2f5;
-  border: none;
-  padding: 12px 14px;
-  border-radius: 8px;
-  text-align: left;
-  cursor: pointer;
-  font-size: 15.5px;
-  font-weight: 600;
-  color: #222;
-  width: 100%;
-  transition: background 0.2s ease;
-}
-
-.sidebar-link-button:hover {
-  background: #e4e7ec;
-}
-
-
-.sidebar-section {
-  margin-top: 18px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.sidebar-section-title {
-  font-size: 13px;
-  font-weight: 600;
-  opacity: 0.7;
-  margin-bottom: 6px;
-}
+/* =========================
+   LINKS PRINCIPALES
+   ========================= */
 
 .sidebar-nav > a {
   display: block;
@@ -109,26 +41,53 @@
   background: #f0f2f5;
 }
 
+/* =========================
+   BOTÓN LEGALES
+   ========================= */
+
+.sidebar-link-button {
+  background: #f0f2f5;
+  border: none;
+  padding: 12px 14px;
+  border-radius: 8px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 15.5px;
+  font-weight: 600;
+  color: #222;
+  width: 100%;
+}
+
+.sidebar-link-button:hover {
+  background: #e4e7ec;
+}
+
+/* =========================
+   SUBMENÚ
+   ========================= */
+
 .sidebar-submenu {
   padding-left: 12px;
-  margin-top: 6px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .sidebar-submenu a {
-  font-size: 14.8px; /* 👈 más grande */
+  font-size: 14.5px;
   padding: 6px 10px;
   border-radius: 6px;
   color: #333;
   text-decoration: none;
-  transition: background 0.2s ease;
 }
 
 .sidebar-submenu a:hover {
   background: #eaecef;
 }
+
+/* =========================
+   SECCIONES
+   ========================= */
 
 .sidebar-section {
   margin-top: 22px;
@@ -143,64 +102,28 @@
   margin-bottom: 8px;
 }
 
-/* =====================
-   HERRAMIENTAS PROFESIONALES
-   ===================== */
-
 .sidebar-section-title.highlight {
   font-size: 0.95rem;
-  font-weight: 600;
-  color: #222;
-  margin-top: 1.2rem;
-  margin-bottom: 0.6rem;
-  letter-spacing: 0.2px;
-}
-
-.sidebar-tool-link {
-  display: block;
-  padding: 0.45rem 0.6rem;
-  margin-left: 0.3rem;
-  margin-bottom: 0.2rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  color: #333;
-  text-decoration: none;
-  transition: background 0.15s ease;
-}
-
-.sidebar-tool-link:hover {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-/* =====================
-   SECCIONES DE HERRAMIENTAS
-   ===================== */
-
-.sidebar-section {
-  margin-top: 1.2rem;
-}
-
-.sidebar-section-title.highlight {
-  font-size: 1rem;
   font-weight: 700;
   color: #1f1f1f;
-  margin-bottom: 0.5rem;
 }
 
 .sidebar-section-title.subtle {
   font-size: 0.85rem;
   font-weight: 600;
   color: #666;
-  margin-bottom: 0.4rem;
 }
+
+/* =========================
+   LINKS DE HERRAMIENTAS
+   ========================= */
 
 .sidebar-tool-link {
   display: block;
-  padding: 0.45rem 0.6rem;
-  margin-left: 0.3rem;
-  margin-bottom: 0.25rem;
+  padding: 10px 12px;
+  margin-bottom: 10px;
   border-radius: 8px;
-  font-size: 0.9rem;
+  font-size: 14.5px;
   color: #333;
   text-decoration: none;
   transition: background 0.15s ease;
@@ -210,81 +133,36 @@
   background: rgba(0, 0, 0, 0.05);
 }
 
-/* =================================================
-   FIX DEFINITIVO: button = link en el sidebar
-   ================================================= */
-
-/* Igualar botones a links principales */
-.sidebar-nav > button.sidebar-tool-link {
-  display: block;
-  width: 100%;
-
-  padding: 12px 14px;           /* IGUAL que .sidebar-nav > a */
-  border-radius: 8px;
-
-  font-size: 15.5px;
-  font-weight: 600;
-  color: #222;
-
-  background: transparent;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-
-  transition: background 0.2s ease;
-}
-
-/* Hover igual al link */
-.sidebar-nav > button.sidebar-tool-link:hover {
-  background: #f0f2f5;
-}
-
-/* Cuando el sidebar está cerrado, ocultar texto igual que <a> */
-.sidebar.closed .sidebar-nav > button.sidebar-tool-link {
-  font-size: 0;
-}
-
 /* =========================
-   SIDEBAR MOBILE FIX
+   MOBILE
    ========================= */
-/* =========================
-   SIDEBAR MOBILE FIX FINAL
-   ========================= */
+
 @media (max-width: 768px) {
-
   .sidebar {
-    position: fixed;
-    top: 0;
+    position: fixed;          /* 🔥 ESTO FALTABA */
+    top: 70px;               /* 👈 acá lo subís o bajás */
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 220px;
 
-    background: #ffffff;
-    z-index: 9999;
+    height: calc(100vh - 120px);
 
     transform: translateX(-100%);
     transition: transform 0.3s ease;
-  }
 
-  .sidebar.open {
-    transform: translateX(0);
-  }
-
-}
-
-@media (max-width: 768px) {
-
-  .sidebar {
-    position: fixed;
-    inset: 0;
-    background: #ffffff;
-    z-index: 9999;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
+    background: #eef5ff;
+    z-index: 1400;
   }
 
   body.sidebar-open .sidebar {
     transform: translateX(0);
   }
+  @media (max-width: 768px) {
+  .sidebar {
+    top: 100px !important;
+    height: calc(100vh - 200px) !important;
+  }
+}
 
 }
+
+

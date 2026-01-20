@@ -18,6 +18,10 @@
   gap: 1rem;
 }
 
+/* =========================================
+   LOGO
+   (se respeta tu base + overrides al final)
+   ========================================= */
 .logo {
   font-size: 30px;
   font-weight: 700;
@@ -27,6 +31,9 @@
   text-transform: uppercase;
 }
 
+/* =========================================
+   SEARCH
+   ========================================= */
 .search-input {
   flex: 1;
   padding: 0.7rem 1rem;
@@ -45,6 +52,7 @@
   background: #ddd;
   border-radius: 50%;
 }
+
 .header-actions {
   display: flex;
   align-items: center;
@@ -123,8 +131,8 @@
 /* ========================= */
 
 .search-block {
-  flex: 1;              /* ocupa el espacio central */
-  max-width: 700px;     /* mismo ancho visual que antes */
+  flex: 1;
+  max-width: 700px;
 }
 
 .search-input {
@@ -137,10 +145,11 @@
 
 .search-wrapper {
   position: relative;
+  flex: 1; /* ✅ importante para que el buscador no se achique */
 }
 
 .search-input {
-  padding-right: 42px; /* espacio para el botón */
+  padding-right: 42px;
 }
 
 .search-filter-inside {
@@ -165,8 +174,19 @@
   color: #888;
   margin: 6px auto 0;
   max-width: 600px;
+
+  /* ✅ para que no se corte en mobile */
+  width: calc(100% - 24px);
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #f5f7fb;
+  border: 1px solid #e5e7eb;
 }
 
+/* =========================================
+   AUTOCOMPLETE LIST
+   ========================================= */
 .search-suggestions {
   position: absolute;
   top: 100%;
@@ -199,6 +219,9 @@
   font-size: 12px;
 }
 
+/* =========================================
+   AUTH BUTTONS
+   ========================================= */
 .header-login-btn {
   padding: 10px 14px;
   border-radius: 8px;
@@ -254,90 +277,146 @@
 }
 
 /* =========================
-   LOGO ENACTO
+   LOGO ENACTO (override final)
    ========================= */
-
 .header .logo {
   font-size: 30px;
   font-weight: 800;
   letter-spacing: 2.5px;
   text-transform: uppercase;
   font-family: "Inter", system-ui, sans-serif;
-
-  /* 🎨 Azul pastel elegante */
   color: #4f8cff;
-
-  /* 📍 Ajuste de posición */
   margin-left: -35px;
-
   text-decoration: none;
   line-height: 1;
   display: flex;
   align-items: center;
-
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
-/* Hover sutil */
 .header .logo:hover {
   color: #3b73e6;
   transform: translateY(-1px);
 }
 
 /* =========================
-   HEADER MOBILE FIX
+   MOBILE MENU BUTTON
+   ========================= */
+.mobile-menu-btn {
+  display: none; /* desktop hidden */
+  background: none;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 6px 8px;
+  border-radius: 10px;
+}
+
+.mobile-menu-btn:hover {
+  background: rgba(0,0,0,0.06);
+}
+
+/* =========================
+   HEADER MOBILE FIX (solo mobile, sin romper desktop)
+   OBJETIVO:
+   - En PC: [ENACTO][BUSCADOR][MI CUENTA] (ya lo cumple el base)
+   - En Mobile: LOGO arriba, y abajo: [☰][BUSCADOR][MI CUENTA]
    ========================= */
 @media (max-width: 768px) {
 
+  /* ✅ header por encima del sidebar (solo si el sidebar usa z-index 1400 en mobile) */
+  .header {
+    z-index: 1600;
+  }
+
+  @media (max-width: 768px) {
+
+  .sidebar {
+    position: fixed;
+    top: 150px;               /* ✅ BAJAMOS el sidebar */
+    height: calc(100vh - 120px);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    background: #eef5ff;
+    z-index: 1400;
+  }
+
+  body.sidebar-open .sidebar {
+    transform: translateX(0);
+  }
+
+}
+
+
+  /* ✅ Permitimos 2 filas reales sin tocar desktop */
   .header-inner {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-    padding: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
   }
 
-  .logo {
-    font-size: 22px;
-    margin-left: 0;
-    text-align: center;
-  }
-
-  .search-wrapper {
+  /* ✅ LOGO ARRIBA (fila 1 completa) */
+  .header .logo {
+    order: 1;
     width: 100%;
+    margin-left: 0; /* no romper */
+    justify-content: center;
+    text-align: center;
+    font-size: 22px;
+  }
+
+  /* ✅ BOTON SIDEBAR (abajo izquierda) */
+  .mobile-menu-btn {
+    order: 2;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* ✅ BUSCADOR (abajo centro, ocupa espacio) */
+  .search-wrapper {
+    order: 3;
+    flex: 1;
+    width: auto;
   }
 
   .search-input {
     width: 100%;
     font-size: 16px;
-    padding: 12px 14px;
+    padding: 12px 44px 12px 14px;
   }
 
+  /* ✅ MI CUENTA (abajo derecha) */
   .header-actions {
-    justify-content: center;
-    width: 100%;
+    order: 4;
+    width: auto;
+    justify-content: flex-end;
+    margin-top: 0;
   }
 
+  /* ✅ si estás logueado, que no se desborde */
+  .profile-btn {
+    margin-left: 0;
+  }
+
+  /* ✅ panel filtros: que no se corte */
+  .filters-panel-placeholder {
+    max-width: none;
+    width: calc(100% - 24px);
+    margin: 10px auto 0;
+  }
+
+  /* ✅ auth buttons: en mobile pueden quedar compactos */
   .header-auth-buttons {
-    display: flex;
     gap: 10px;
-    width: 100%;
+    align-items: center;
   }
 
   .header-login-btn,
   .header-register-btn {
-    flex: 1;
-    text-align: center;
-    padding: 10px 0;
+    padding: 10px 12px;
     font-size: 14px;
-  }
-}
-
-@media (max-width: 768px) {
-  .mobile-menu-btn {
-    background: none;
-    border: none;
-    font-size: 26px;
-    cursor: pointer;
-    align-self: flex-start;
   }
 }

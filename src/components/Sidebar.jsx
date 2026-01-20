@@ -1,41 +1,51 @@
 import "./Sidebar.css";
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import FeriasAccessModal from "../components/FeriasAccessModal";
 
 function Sidebar() {
-  const [open, setOpen] = useState(true);
   const [openLegales, setOpenLegales] = useState(false);
-
   const [showFeriantesModal, setShowFeriantesModal] = useState(false);
   const [targetTool, setTargetTool] = useState(null);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const { profile } = useAuth();
-  const navigate = useNavigate();
 
   const isProfessional = profile?.is_professional === true;
-
-  // ⬇️ AJUSTÁ ESTA LÍNEA SI TU FLAG SE LLAMA DISTINTO
   const hasFeriasAccess =
     profile?.tools_access?.includes("ferias") === true;
 
+  // 🔹 Manejo sidebar SOLO en mobile
+  useEffect(() => {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    if (isMobile && isMobileOpen) {
+      document.body.classList.add("sidebar-open");
+    } else {
+      document.body.classList.remove("sidebar-open");
+    }
+  }, [isMobileOpen]);
+
   return (
     <>
-      <aside className={open ? "sidebar open" : "sidebar closed"}>
-        {/* BOTÓN TOGGLE */}
-        <div
-          className="sidebar-toggle-inside"
-          onClick={() => setOpen(!open)}
-        >
-          {open ? "←" : "☰"}
-        </div>
+      {/* 🔘 BOTÓN SOLO MOBILE */}
+      <button
+        className="sidebar-toggle"
+        onClick={() => setIsMobileOpen(!isMobileOpen)}
+        aria-label="Abrir menú"
+      >
+        ☰
+      </button>
 
+      <aside className="sidebar">
         <nav className="sidebar-nav">
           {/* =====================
               MI CUENTA
              ===================== */}
-          <Link to="/mi-cuenta">👤 Mi cuenta</Link>
+          <Link to="/mi-cuenta" onClick={() => setIsMobileOpen(false)}>
+            👤 Mi cuenta
+          </Link>
 
           {/* =====================
               LEGALES
@@ -50,16 +60,24 @@ function Sidebar() {
 
           {openLegales && (
             <div className="sidebar-submenu">
-              <Link to="/terms">Términos y Condiciones</Link>
-              <Link to="/privacy">Política de Privacidad</Link>
-              <Link to="/cookies">Cookies</Link>
+              <Link to="/terms" onClick={() => setIsMobileOpen(false)}>
+                Términos y Condiciones
+              </Link>
+              <Link to="/privacy" onClick={() => setIsMobileOpen(false)}>
+                Política de Privacidad
+              </Link>
+              <Link to="/cookies" onClick={() => setIsMobileOpen(false)}>
+                Cookies
+              </Link>
             </div>
           )}
 
           {/* =====================
               AYUDA
              ===================== */}
-          <Link to="/ayuda">🆘 Ayuda</Link>
+          <Link to="/ayuda" onClick={() => setIsMobileOpen(false)}>
+            🆘 Ayuda
+          </Link>
 
           {/* =====================
               HERRAMIENTAS PARA FERIANTES
@@ -69,26 +87,21 @@ function Sidebar() {
               🎪 Herramientas para Feriantes
             </div>
 
-            {/* FERIAS */}
             <Link
               to="/herramientas/ferias"
               className="sidebar-tool-link"
               onClick={(e) => {
-                // 🟢 SI YA TIENE ACCESO → ENTRA DIRECTO
-                if (hasFeriasAccess) {
-                  return; // deja que el Link navegue
+                if (!hasFeriasAccess) {
+                  e.preventDefault();
+                  setTargetTool("ferias");
+                  setShowFeriantesModal(true);
                 }
-
-                // 🔴 CASO CONTRARIO → MODAL
-                e.preventDefault();
-                setTargetTool("ferias");
-                setShowFeriantesModal(true);
+                setIsMobileOpen(false);
               }}
             >
               🎟️ Ferias disponibles
             </Link>
 
-            {/* COLABORADORES */}
             <Link
               to="/herramientas/colaboradores"
               className="sidebar-tool-link"
@@ -96,6 +109,7 @@ function Sidebar() {
                 e.preventDefault();
                 setTargetTool("colaboradores");
                 setShowFeriantesModal(true);
+                setIsMobileOpen(false);
               }}
             >
               🤝 Buscar colaborador
@@ -116,7 +130,7 @@ function Sidebar() {
       </aside>
 
       {/* =====================
-          MODAL ÚNICO
+          MODAL DE ACCESO
          ===================== */}
       {showFeriantesModal && (
         <FeriasAccessModal

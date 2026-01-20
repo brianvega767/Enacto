@@ -12,8 +12,6 @@ function Header({ search, setSearch }) {
   const { user, profile, loading } = useAuth();
 
   const [showFilters, setShowFilters] = useState(false);
-
-  // 🔍 Autocomplete
   const [allCategories, setAllCategories] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -29,18 +27,14 @@ function Header({ search, setSearch }) {
   const isBuscarPage = location.pathname === "/buscar";
   const allowSuggestions = location.pathname === "/" || isBuscarPage;
 
-  // =========================
-  // CARGAR CATEGORÍAS REALES
-  // =========================
   useEffect(() => {
     const loadCategories = async () => {
-      const { data, error } = await supabase.rpc("filter_options");
-      if (error) return;
+      const { data } = await supabase.rpc("filter_options");
+      if (!data) return;
 
-      const clean =
-        (data?.categorias || [])
-          .filter((c) => typeof c === "string" && c.trim() !== "")
-          .map((c) => c.trim());
+      const clean = (data?.categorias || [])
+        .filter((c) => typeof c === "string" && c.trim() !== "")
+        .map((c) => c.trim());
 
       setAllCategories(Array.from(new Set(clean)));
     };
@@ -48,18 +42,12 @@ function Header({ search, setSearch }) {
     loadCategories();
   }, []);
 
-  // =========================
-  // CERRAR AUTOCOMPLETE AL CAMBIAR DE RUTA
-  // =========================
   useEffect(() => {
     setShowSuggestions(false);
     setHighlightedIndex(-1);
     suppressAutocompleteRef.current = true;
   }, [location.pathname]);
 
-  // =========================
-  // SINCRONIZAR SEARCH EXTERNO
-  // =========================
   useEffect(() => {
     if (typingRef.current) {
       typingRef.current = false;
@@ -79,14 +67,10 @@ function Header({ search, setSearch }) {
     }
   }, [search]);
 
-  // =========================
-  // POSICIÓN DROPDOWN
-  // =========================
   useEffect(() => {
     if (!showSuggestions || !inputRef.current) return;
 
     const rect = inputRef.current.getBoundingClientRect();
-
     setDropdownStyle({
       position: "fixed",
       top: rect.bottom + 8,
@@ -96,56 +80,6 @@ function Header({ search, setSearch }) {
     });
   }, [showSuggestions, suggestions]);
 
-  // =========================
-  // TECLADO
-  // =========================
-  const handleKeyDown = (e) => {
-    if (showSuggestions) {
-      if (e.key === "ArrowDown") {
-        e.preventDefault();
-        setHighlightedIndex((i) => Math.min(i + 1, suggestions.length - 1));
-        return;
-      }
-
-      if (e.key === "ArrowUp") {
-        e.preventDefault();
-        setHighlightedIndex((i) => Math.max(i - 1, -1));
-        return;
-      }
-
-      if (e.key === "Enter" && highlightedIndex >= 0) {
-        e.preventDefault();
-        const selected = suggestions[highlightedIndex];
-
-        suppressAutocompleteRef.current = true;
-        setShowSuggestions(false);
-        setHighlightedIndex(-1);
-        setSearch(selected);
-
-        if (!isBuscarPage) {
-          navigate(`/buscar?q=${encodeURIComponent(selected)}`);
-        }
-        return;
-      }
-    }
-
-    if (e.key === "Enter") {
-      const term = search.trim();
-      if (!term) return;
-
-      suppressAutocompleteRef.current = true;
-      setShowSuggestions(false);
-      setHighlightedIndex(-1);
-
-      if (!isBuscarPage) {
-        navigate(`/buscar?q=${encodeURIComponent(term)}`);
-      }
-    }
-  };
-
-  // =========================
-  // AUTOCOMPLETE
-  // =========================
   useEffect(() => {
     if (!allowSuggestions) return;
     if (suppressAutocompleteRef.current) return;
@@ -177,14 +111,54 @@ function Header({ search, setSearch }) {
     setSearch(e.target.value);
   };
 
+  const handleKeyDown = (e) => {
+    if (showSuggestions) {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setHighlightedIndex((i) =>
+          Math.min(i + 1, suggestions.length - 1)
+        );
+        return;
+      }
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setHighlightedIndex((i) => Math.max(i - 1, -1));
+        return;
+      }
+      if (e.key === "Enter" && highlightedIndex >= 0) {
+        e.preventDefault();
+        const selected = suggestions[highlightedIndex];
+        setShowSuggestions(false);
+        setHighlightedIndex(-1);
+        setSearch(selected);
+        if (!isBuscarPage)
+          navigate(`/buscar?q=${encodeURIComponent(selected)}`);
+        return;
+      }
+    }
+
+    if (e.key === "Enter") {
+      const term = search.trim();
+      if (!term) return;
+      setShowSuggestions(false);
+      setHighlightedIndex(-1);
+      if (!isBuscarPage)
+        navigate(`/buscar?q=${encodeURIComponent(term)}`);
+    }
+  };
+
+  // 🔹 Sidebar toggle SOLO mobile
   const toggleSidebar = () => {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (!isMobile) return;
     document.body.classList.toggle("sidebar-open");
   };
 
   return (
     <header className="header">
       <div className="header-inner">
-        {/* BOTÓN MENÚ MOBILE */}
+
+        {/* BOTÓN SIDEBAR (oculto en desktop por CSS) */}
         <button
           className="mobile-menu-btn"
           onClick={toggleSidebar}
@@ -193,8 +167,12 @@ function Header({ search, setSearch }) {
           ☰
         </button>
 
-        <Link to="/" className="logo">ENACTO</Link>
+        {/* LOGO */}
+        <Link to="/" className="logo">
+          ENACTO
+        </Link>
 
+        {/* BUSCADOR */}
         <div className="search-wrapper">
           <input
             ref={inputRef}
@@ -204,12 +182,6 @@ function Header({ search, setSearch }) {
             value={search}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
-            onFocus={() => {
-              if (suggestions.length && !suppressAutocompleteRef.current) {
-                setShowSuggestions(true);
-              }
-            }}
-            onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
           />
 
           <button
@@ -220,19 +192,12 @@ function Header({ search, setSearch }) {
           </button>
         </div>
 
-        {/* =========================
-            ACCIONES DERECHA (AUTH)
-           ========================= */}
+        {/* MI CUENTA */}
         <div className="header-actions">
           {!loading && !user && (
-            <div className="header-auth-buttons">
-              <Link to="/login" className="header-login-btn">
-                Iniciar sesión
-              </Link>
-              <Link to="/register" className="header-register-btn">
-                Registrarse
-              </Link>
-            </div>
+            <Link to="/login" className="header-login-btn">
+              Iniciar sesión
+            </Link>
           )}
 
           {user && !loading && (
@@ -252,6 +217,7 @@ function Header({ search, setSearch }) {
             </div>
           )}
         </div>
+
       </div>
 
       {showFilters && (
@@ -265,37 +231,17 @@ function Header({ search, setSearch }) {
       {showSuggestions &&
         dropdownStyle &&
         createPortal(
-          <ul
-            className="search-suggestions"
-            style={{
-              ...dropdownStyle,
-              background: "#ffffff",
-              border: "1px solid #e5e7eb",
-              borderRadius: "12px",
-              boxShadow: "0 12px 32px rgba(0,0,0,0.14)",
-              padding: "8px 0",
-            }}
-          >
+          <ul className="search-suggestions" style={dropdownStyle}>
             {suggestions.map((s, i) => (
               <li
                 key={s}
+                className={i === highlightedIndex ? "active" : ""}
                 onMouseDown={() => {
-                  suppressAutocompleteRef.current = true;
                   setShowSuggestions(false);
                   setHighlightedIndex(-1);
                   setSearch(s);
-
-                  if (!isBuscarPage) {
+                  if (!isBuscarPage)
                     navigate(`/buscar?q=${encodeURIComponent(s)}`);
-                  }
-                }}
-                style={{
-                  padding: "12px 18px",
-                  cursor: "pointer",
-                  fontSize: "16px",
-                  fontWeight: 500,
-                  color: "#111827",
-                  background: i === highlightedIndex ? "#eef2f7" : "transparent",
                 }}
               >
                 {s}
