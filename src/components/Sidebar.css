@@ -272,3 +272,19 @@
 
 }
 
+@media (max-width: 768px) {
+
+  .sidebar {
+    position: fixed;
+    inset: 0;
+    background: #ffffff;
+    z-index: 9999;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  body.sidebar-open .sidebar {
+    transform: translateX(0);
+  }
+
+}

@@ -177,9 +177,22 @@ function Header({ search, setSearch }) {
     setSearch(e.target.value);
   };
 
+  const toggleSidebar = () => {
+    document.body.classList.toggle("sidebar-open");
+  };
+
   return (
     <header className="header">
       <div className="header-inner">
+        {/* BOTÓN MENÚ MOBILE */}
+        <button
+          className="mobile-menu-btn"
+          onClick={toggleSidebar}
+          aria-label="Abrir menú"
+        >
+          ☰
+        </button>
+
         <Link to="/" className="logo">ENACTO</Link>
 
         <div className="search-wrapper">

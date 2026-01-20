@@ -35,3 +35,23 @@
   border: none;
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+
+  .search-filters-toggle {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 12px 0;
+  }
+
+  .filters-panel {
+    position: fixed;
+    inset: 0;
+    background: #ffffff;
+    z-index: 9998;
+    padding: 16px;
+    overflow-y: auto;
+  }
+
+}

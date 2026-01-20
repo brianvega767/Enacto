@@ -331,3 +331,13 @@
     font-size: 14px;
   }
 }
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    background: none;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+    align-self: flex-start;
+  }
+}
