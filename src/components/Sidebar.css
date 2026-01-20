@@ -247,13 +247,21 @@
 /* =========================
    SIDEBAR MOBILE FIX
    ========================= */
+/* =========================
+   SIDEBAR MOBILE FIX FINAL
+   ========================= */
 @media (max-width: 768px) {
 
   .sidebar {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
     background: #ffffff;
-    z-index: 1000;
+    z-index: 9999;
+
     transform: translateX(-100%);
     transition: transform 0.3s ease;
   }
@@ -263,3 +271,4 @@
   }
 
 }
+
