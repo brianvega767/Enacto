@@ -37,6 +37,14 @@ const uiCap = (s) => {
 function Buscar() {
   const [params, setParams] = useSearchParams();
 
+  // ✅ MOBILE REACTIVO (no depende de reload)
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   const [search, setSearch] = useState(null);
   const [debouncedSearch, setDebouncedSearch] = useState(null);
   const [offset, setOffset] = useState(0);
@@ -193,7 +201,6 @@ function Buscar() {
       }
 
       // 2) Fallback (si RPC falló o vino vacío): armar desde tablas reales
-      //    Esto evita que tu UI quede en blanco aunque el RPC no esté bien.
       console.warn("⚠️ filter_options no disponible o vacío, usando fallback desde tablas.");
 
       const [{ data: cats }, { data: subs }] = await Promise.all([
@@ -321,7 +328,6 @@ function Buscar() {
     // reemplazar guiones por espacios
     clean = clean.replace(/-/g, " ");
 
-
     // 3) capitalizo para UI
     const label = clean ? clean.charAt(0).toUpperCase() + clean.slice(1) : "";
 
@@ -350,7 +356,12 @@ function Buscar() {
               alignItems: "center",
               marginTop: "32px",
               marginBottom: "36px",
-              transform: "translateX(-120px)",
+
+              // ✅ FIX MOBILE: el corte venía de acá
+              // En desktop mantenemos tu diseño tal cual
+              transform: isMobile ? "none" : "translateX(-120px)",
+              width: "100%",
+              maxWidth: "100%",
             }}
           >
             <button
@@ -359,7 +370,7 @@ function Buscar() {
                 background: "#ffffff",
                 border: "1px solid #e5e7eb",
                 borderRadius: "999px",
-                padding: "14px 34px",
+                padding: isMobile ? "12px 22px" : "14px 34px",
                 cursor: "pointer",
                 fontSize: "16px",
                 fontWeight: 600,
@@ -376,19 +387,25 @@ function Buscar() {
               <div
                 style={{
                   width: "100%",
-                  maxWidth: "720px",
+                  // ✅ FIX MOBILE: que no quede limitado
+                  maxWidth: isMobile ? "100%" : "720px",
                   background: "#ffffff",
-                  borderRadius: "22px",
+                  // ✅ FIX MOBILE: panel a pantalla completa del contenedor
+                  borderRadius: isMobile ? "16px" : "22px",
                   border: "1px solid #e5e7eb",
                   boxShadow: "0 20px 50px rgba(0,0,0,0.2)",
-                  padding: "32px",
+                  padding: isMobile ? "18px 14px" : "32px",
+
+                  // ✅ evita que se recorte por layouts raros
+                  boxSizing: "border-box",
                 }}
               >
                 <div
                   style={{
                     display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: "20px",
+                    // ✅ FIX MOBILE: una columna
+                    gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+                    gap: isMobile ? "14px" : "20px",
                   }}
                 >
                   {/* CATEGORÍA */}
@@ -414,8 +431,8 @@ function Buscar() {
                       style={{
                         width: "100%",
                         marginTop: "8px",
-                        padding: "12px 14px",
-                        fontSize: "15px",
+                        padding: isMobile ? "12px 12px" : "12px 14px",
+                        fontSize: isMobile ? "16px" : "15px", // ✅ evita zoom iOS + mejor tacto
                         borderRadius: "10px",
                         border: "1px solid #d1d5db",
                         background: "#ffffff",
@@ -453,8 +470,8 @@ function Buscar() {
                       style={{
                         width: "100%",
                         marginTop: "8px",
-                        padding: "12px 14px",
-                        fontSize: "15px",
+                        padding: isMobile ? "12px 12px" : "12px 14px",
+                        fontSize: isMobile ? "16px" : "15px",
                         borderRadius: "10px",
                         border: "1px solid #d1d5db",
                         background: "#ffffff",
@@ -493,8 +510,8 @@ function Buscar() {
                       style={{
                         width: "100%",
                         marginTop: "8px",
-                        padding: "12px 14px",
-                        fontSize: "15px",
+                        padding: isMobile ? "12px 12px" : "12px 14px",
+                        fontSize: isMobile ? "16px" : "15px",
                         borderRadius: "10px",
                         border: "1px solid #d1d5db",
                         background: "#ffffff",
@@ -532,8 +549,8 @@ function Buscar() {
                       style={{
                         width: "100%",
                         marginTop: "8px",
-                        padding: "12px 14px",
-                        fontSize: "15px",
+                        padding: isMobile ? "12px 12px" : "12px 14px",
+                        fontSize: isMobile ? "16px" : "15px",
                         borderRadius: "10px",
                         border: "1px solid #d1d5db",
                         background: "#ffffff",
