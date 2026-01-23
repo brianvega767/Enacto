@@ -3647,6 +3647,6 @@ html, body {
   .home-professionals-counter {
     position: absolute;  /* 🔥 mantener absolute */
     top: 170px;          /* 👈 bajarlo */
-    right: 150px;
+    right: 100px;
   }
 }
