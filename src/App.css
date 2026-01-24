@@ -3691,7 +3691,7 @@ html, body {
    ========================= */
 
 .home-professionals-counter {
-  padding-left: 10px;   /* 👈 reduce el “peso” a la derecha */
+  padding-left: 0px;   /* 👈 reduce el “peso” a la derecha */
   padding-right: 18px;
 }
 
