@@ -3686,4 +3686,13 @@ html, body {
     font-size: 2.4rem;        /* 🔥 protagonista */
     font-weight: 800;
   }
+  /* =========================
+   CONTADOR HOME — AJUSTE FINO CENTRADO
+   ========================= */
+
+.home-professionals-counter {
+  padding-left: 10px;   /* 👈 reduce el “peso” a la derecha */
+  padding-right: 18px;
+}
+
 }

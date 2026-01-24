@@ -489,6 +489,6 @@
   }
   .feed-container {
     margin-left: 0;
-    padding-top: 80px; /* 👈 BAJA EL FEED DEBAJO DEL HEADER */
+    padding-top: 45px; /* 👈 BAJA EL FEED DEBAJO DEL HEADER */
   }
 }
