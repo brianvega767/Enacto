@@ -3649,27 +3649,21 @@ html, body {
     top: 170px;          /* 👈 bajarlo */
     right: 1px;
   }
-}
 
-/* =========================
-   CONTADOR HOME — MOBILE FIX
-   ========================= */
-
-@media (max-width: 768px) {
   .home-professionals-counter {
     position: relative;
     top: auto;
     left: auto;
     right: auto;
 
-    margin: 50px auto 0.1px;   /* aire arriba y abajo */
-    transform: none;          /* 🔥 CLAVE: elimina el achique */
+    margin: 32px auto 0;
+    transform: none;
 
-    width: auto;
-    min-width: 500px;         /* 🔥 más grande y legible */
-    max-width: 150%;
+    width: 100%;
+    max-width: 360px;     /* 🔥 nunca más ancho que mobile */
+    min-width: unset;    /* 🔥 CLAVE: elimina el corrimiento */
 
-    padding: 30px 22px;       /* 🔥 más cómodo para mobile */
+    padding: 26px 20px;  /* balanceado visualmente */
 
     background: #E6F4EA;
     border-radius: 16px;
@@ -3679,20 +3673,12 @@ html, body {
   }
 
   .home-counter-label {
-    font-size: 1.5rem;        /* 🔥 más legible */
+    font-size: 1.2rem;
   }
 
   .home-counter-number {
-    font-size: 2.4rem;        /* 🔥 protagonista */
+    font-size: 2.4rem;
     font-weight: 800;
   }
-  /* =========================
-   CONTADOR HOME — AJUSTE FINO CENTRADO
-   ========================= */
-
-.home-professionals-counter {
-  padding-left: 0px;   /* 👈 reduce el “peso” a la derecha */
-  padding-right: 18px;
 }
 
-}
