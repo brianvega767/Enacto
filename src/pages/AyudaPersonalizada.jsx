@@ -28,7 +28,6 @@ function AyudaPersonalizada() {
 
     setLoading(true);
 
-    // ✅ ENVÍO REAL A SUPABASE
     const { error } = await supabase
       .from("help_requests")
       .insert([
@@ -47,7 +46,6 @@ function AyudaPersonalizada() {
       return;
     }
 
-    // ✅ ÉXITO REAL
     setShowSuccess(true);
     setNombre("");
     setEmail("");
@@ -87,6 +85,24 @@ function AyudaPersonalizada() {
             boxShadow: "0 25px 50px rgba(0,0,0,0.15)",
           }}
         >
+          {/* BOTÓN VOLVER ATRÁS */}
+          <button
+            onClick={() => navigate(-1)}
+            style={{
+              background: "none",
+              border: "none",
+              padding: 0,
+              marginBottom: "1.5rem",
+              fontSize: "0.95rem",
+              fontWeight: 600,
+              color: "#1f7a4d",
+              cursor: "pointer",
+              alignSelf: "flex-start",
+            }}
+          >
+            ← Volver atrás
+          </button>
+
           <h1 className="account-title">Ayuda personalizada</h1>
 
           <p

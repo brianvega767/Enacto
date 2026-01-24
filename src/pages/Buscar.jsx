@@ -370,13 +370,15 @@ function Buscar() {
                 background: "#ffffff",
                 border: "1px solid #e5e7eb",
                 borderRadius: "999px",
-                padding: isMobile ? "12px 22px" : "14px 34px",
+                padding: isMobile ? "15px 25px" : "14px 34px",
                 cursor: "pointer",
-                fontSize: "16px",
-                fontWeight: 600,
+                fontSize: "24px",
+                fontWeight: 800,
                 color: "#111827",
                 boxShadow: "0 10px 30px rgba(0,0,0,0.18)",
                 transition: "all 0.2s ease",
+                marginBottom: showFilters ? "22px" : "0",
+                marginTop: isMobile ? "45px" : "60px",   // 👈 ACÁ
                 marginBottom: showFilters ? "22px" : "0",
               }}
             >

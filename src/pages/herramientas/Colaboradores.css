@@ -97,17 +97,6 @@
 }
 
 /* =========================
-   GRID DE CARDS (CORREGIDO)
-   ========================= */
-
-.colab-grid {
-  display: flex;                 /* 🔑 CAMBIO CLAVE */
-  flex-wrap: wrap;
-  justify-content: center;       /* 🔥 SIEMPRE CENTRADO */
-  gap: 36px;
-}
-
-/* =========================
    CARD
    ========================= */
 
@@ -117,7 +106,8 @@
   padding: 30px;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
 
-  width: 360px;                  /* 🔥 2 POR FILA, COMPACTA */
+  width: 100%;
+  max-width: 360px; /* mantiene EXACTO el diseño desktop */                 /* 🔥 2 POR FILA, COMPACTA */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -278,4 +268,69 @@
 .modal-button.danger {
   background: #c0392b;
   color: #ffffff;
+}
+
+/* =========================
+   RESPONSIVE UNIVERSAL
+========================= */
+
+/* GRID ADAPTATIVO REAL */
+.colab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 36px;
+  justify-items: center;
+}
+
+
+/* =========================
+   HEADER RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .colab-header {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  .colab-title-wrapper {
+    text-align: center;
+  }
+
+  .colab-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .colab-back {
+    align-self: flex-start;
+  }
+}
+
+/* =========================
+   CARDS MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  .colab-card {
+    padding: 18px;
+  }
+
+  .colab-card-header {
+    gap: 12px;
+  }
+
+  .colab-actions-card {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-instagram,
+  .btn-contactar {
+    width: 100%;
+    text-align: center;
+  }
 }

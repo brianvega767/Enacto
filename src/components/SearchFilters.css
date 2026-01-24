@@ -1,3 +1,7 @@
+/* =========================
+   PANEL FILTROS – DESKTOP
+   ========================= */
+
 .search-filters {
   position: absolute;
   top: 52px;
@@ -10,48 +14,95 @@
   z-index: 1000;
 }
 
-.filter-group {
+/* =========================
+   HEADER DEL PANEL
+   ========================= */
+
+.filters-header {
   display: flex;
-  flex-direction: column;
-  font-size: 0.8rem;
-  margin-bottom: 10px;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 14px;
 }
 
-.filter-group input,
-.filter-group select {
-  margin-top: 4px;
-  padding: 7px 9px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-}
-
-.filters-apply {
-  width: 100%;
-  margin-top: 8px;
-  padding: 9px;
-  border-radius: 999px;
-  background: #111;
-  color: #fff;
+.filters-header button {
+  background: none;
   border: none;
+  font-size: 18px;
   cursor: pointer;
 }
 
+/* =========================
+   GRID FILTROS – DESKTOP
+   ========================= */
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* =========================
+   SELECTS
+   ========================= */
+
+.filters-grid select {
+  width: 100%;
+  padding: 7px 9px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 0.85rem;
+  background: #fff;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+   /* Estado cerrado */
+.search-filters.closed {
+  display: none;
+}
+
+/* Estado abierto */
+.search-filters.open {
+  display: block;
+}
+
 @media (max-width: 768px) {
-
-  .search-filters-toggle {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin: 12px 0;
-  }
-
-  .filters-panel {
+  .search-filters {
     position: fixed;
     inset: 0;
+
+    padding: 20px 16px;
     background: #ffffff;
-    z-index: 9998;
-    padding: 16px;
+
     overflow-y: auto;
+    overflow-x: hidden;
+
+    z-index: 999999;
   }
 
+  .filters-header {
+    position: sticky;
+    top: 0;
+    background: #ffffff;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    z-index: 2;
+  }
+
+  .filters-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .filters-grid select {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 14px;
+    border-radius: 12px;
+  }
 }

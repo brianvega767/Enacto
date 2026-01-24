@@ -1,3 +1,4 @@
+import { createPortal } from "react-dom";
 import "./SearchFilters.css";
 
 function SearchFilters({
@@ -7,8 +8,6 @@ function SearchFilters({
   isOpen,
   onClose,
 }) {
-  if (!isOpen) return null;
-
   const handleChange = (key, value) => {
     setFilters((prev) => ({
       ...prev,
@@ -16,9 +15,6 @@ function SearchFilters({
     }));
   };
 
-  // =========================
-  // NORMALIZAR CATEGORÍA
-  // =========================
   const normalizeCategory = (raw) => {
     if (!raw) return null;
     const str = String(raw);
@@ -48,9 +44,6 @@ function SearchFilters({
     )
   );
 
-  // =========================
-  // SUBCATEGORÍAS SEGÚN CATEGORÍA SELECCIONADA
-  // =========================
   const rawSubs =
     filters.categoria &&
     options.subcategoriasPorCategoria &&
@@ -58,7 +51,6 @@ function SearchFilters({
       ? options.subcategoriasPorCategoria[filters.categoria]
       : [];
 
-  // label limpio, value intacto
   const subcategoriasDisponibles = rawSubs.map((s) => {
     const parts = String(s).split("-");
     const label = parts[parts.length - 1];
@@ -68,7 +60,11 @@ function SearchFilters({
     };
   });
 
-  return (
+  // 🔥 Si está cerrado, no renderizamos nada
+  if (!isOpen) return null;
+
+  // 🔥 PORTAL: sacamos el panel fuera del layout
+  return createPortal(
     <div className="search-filters">
       <div className="filters-header">
         <span>Filtrar búsqueda</span>
@@ -76,7 +72,6 @@ function SearchFilters({
       </div>
 
       <div className="filters-grid">
-        {/* CATEGORÍA */}
         <select
           value={filters.categoria || ""}
           onChange={(e) =>
@@ -91,7 +86,6 @@ function SearchFilters({
           ))}
         </select>
 
-        {/* SUBCATEGORÍA */}
         <select
           value={filters.subcategoria || ""}
           disabled={!filters.categoria}
@@ -107,7 +101,6 @@ function SearchFilters({
           ))}
         </select>
 
-        {/* PROVINCIA */}
         <select
           value={filters.provincia || ""}
           onChange={(e) =>
@@ -122,7 +115,6 @@ function SearchFilters({
           ))}
         </select>
 
-        {/* LOCALIDAD */}
         <select
           value={filters.localidad || ""}
           onChange={(e) =>
@@ -137,7 +129,8 @@ function SearchFilters({
           ))}
         </select>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
