@@ -74,19 +74,18 @@ function detectarOrientacion(img) {
 
 function PortfolioBuilder({ esPremium = false, supabase, userId }) {
   const maxFotos = esPremium ? 20 : 7;
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   const [images, setImages] = useState([]);
   const [toast, setToast] = useState(null);
   const [draggingId, setDraggingId] = useState(null);
   const loadedRef = useRef(false);
 
-  // ✅ Modal Premium
   const [showPremiumModal, setShowPremiumModal] = useState(false);
 
   const trayImages = images.filter((i) => i && !i.enPortfolio);
   const portfolioImages = images.filter((i) => i && i.enPortfolio);
 
-  // 🔒 SOLO VISIBLES SEGÚN PLAN (BLINDADO)
   const visibles = portfolioImages
     .filter((i) => i && i.id && i.url)
     .slice(0, maxFotos);
@@ -133,7 +132,10 @@ function PortfolioBuilder({ esPremium = false, supabase, userId }) {
     if (!loadedRef.current) return;
 
     visibles.forEach((img, index) => {
-      supabase.from("portfolio_images").update({ position: index }).eq("id", img.id);
+      supabase
+        .from("portfolio_images")
+        .update({ position: index })
+        .eq("id", img.id);
     });
   }, [visibles, supabase]);
 
@@ -144,19 +146,18 @@ function PortfolioBuilder({ esPremium = false, supabase, userId }) {
     const files = Array.from(e.target.files);
     if (!files.length) return;
 
-    // ✅ BLOQUEO PREMIUM: si no es premium y ya llegó a 7, mostrar modal
     if (!esPremium && visibles.length >= maxFotos) {
       setShowPremiumModal(true);
       e.target.value = "";
       return;
     }
 
-    // ✅ Si el usuario selecciona varias imágenes, cortar en el límite permitido
     const cupoDisponible = Math.max(0, maxFotos - visibles.length);
     const filesToProcess =
-      !esPremium && files.length > cupoDisponible ? files.slice(0, cupoDisponible) : files;
+      !esPremium && files.length > cupoDisponible
+        ? files.slice(0, cupoDisponible)
+        : files;
 
-    // Si recortamos por cupo, mostramos el modal premium
     if (!esPremium && files.length > filesToProcess.length) {
       setShowPremiumModal(true);
     }
@@ -183,7 +184,9 @@ function PortfolioBuilder({ esPremium = false, supabase, userId }) {
       const path = `${userId}/${Date.now()}-${crypto.randomUUID()}`;
       await supabase.storage.from("portfolio").upload(path, finalFile);
 
-      const { data: pub } = supabase.storage.from("portfolio").getPublicUrl(path);
+      const { data: pub } = supabase.storage
+        .from("portfolio")
+        .getPublicUrl(path);
 
       setImages((prev) => [
         ...prev,
@@ -201,7 +204,7 @@ function PortfolioBuilder({ esPremium = false, supabase, userId }) {
   };
 
   // =========================
-  // DRAG & DROP
+  // DRAG & DROP / ACCIONES
   // =========================
   const handleDragStart = (id) => setDraggingId(id);
   const permitirDrop = (e) => e.preventDefault();
@@ -209,9 +212,7 @@ function PortfolioBuilder({ esPremium = false, supabase, userId }) {
   const colocarEnPortfolio = async () => {
     if (visibles.length >= maxFotos) {
       if (!esPremium) setShowPremiumModal(true);
-      else {
-        mostrarToast("Máximo 20 imágenes en el portfolio");
-      }
+      else mostrarToast("Máximo alcanzado");
       return;
     }
 
@@ -228,14 +229,16 @@ function PortfolioBuilder({ esPremium = false, supabase, userId }) {
       .select()
       .single();
 
-    if (!data || error) {
-      mostrarToast("No se pudo agregar la imagen al portfolio");
+    if (error || !data) {
+      mostrarToast("No se pudo agregar");
       return;
     }
 
     setImages((prev) =>
       prev.map((i) =>
-        i && i.id === draggingId ? { ...i, id: data.id, enPortfolio: true } : i
+        i && i.id === draggingId
+          ? { ...i, id: data.id, enPortfolio: true }
+          : i
       )
     );
   };
@@ -246,7 +249,11 @@ function PortfolioBuilder({ esPremium = false, supabase, userId }) {
 
     await supabase.from("portfolio_images").delete().eq("id", img.id);
 
-    setImages((prev) => prev.map((i) => (i && i.id === draggingId ? { ...i, enPortfolio: false } : i)));
+    setImages((prev) =>
+      prev.map((i) =>
+        i && i.id === draggingId ? { ...i, enPortfolio: false } : i
+      )
+    );
   };
 
   const eliminarImagen = async () => {
@@ -264,55 +271,11 @@ function PortfolioBuilder({ esPremium = false, supabase, userId }) {
     setImages((prev) => prev.filter((i) => i && i.id !== draggingId));
   };
 
+  // =========================
+  // RENDER
+  // =========================
   return (
     <div className="portfolio-builder">
-      {/* ✅ MODAL PREMIUM (FONDO BORROSO + X) */}
-      {showPremiumModal && !esPremium && (
-        <div
-          className="premium-modal-overlay"
-          onClick={() => setShowPremiumModal(false)}
-        >
-          <div
-            className="premium-modal-card"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="premium-modal-close"
-              onClick={() => setShowPremiumModal(false)}
-              aria-label="Cerrar"
-              type="button"
-            >
-              ✕
-            </button>
-
-            <h3 className="premium-modal-title">🔓 Desbloqueá todo el potencial de tu portfolio</h3>
-
-            <p className="premium-modal-text">
-              Actualmente tu plan permite publicar hasta <b>7 imágenes.</b>
-              <br />
-              Con <b>Premium</b> podes mostrar hasta <b>20 imágenes</b> en tu portfolio, destacar tu perfil y acceder a herramientas pensadas para crecer y vender más.
-            </p>
-
-            <button
-              className="premium-modal-cta"
-              type="button"
-              onClick={() => {
-                window.location.href = "/premium";
-              }}
-            >
-              Ver plan Premium
-            </button>
-          </div>
-        </div>
-      )}
-
-      {!esPremium && portfolioImages.length > maxFotos && (
-        <div className="portfolio-upgrade-hint">
-          <strong>Plan gratuito:</strong> solo se muestran <b>7 imágenes</b>. Volvé a{" "}
-          <b>Premium</b> para mostrar todo tu portfolio.
-        </div>
-      )}
-
       <div className="portfolio-controls">
         <label className="portfolio-upload-btn">
           Subir imágenes
@@ -332,61 +295,77 @@ function PortfolioBuilder({ esPremium = false, supabase, userId }) {
         <div
           className="portfolio-trash"
           onDragOver={permitirDrop}
-          onDrop={eliminarImagen}
+          onDrop={!isMobile ? eliminarImagen : undefined}
         >
           🗑 Eliminar
         </div>
       </div>
 
-      <div className="portfolio-tray" onDragOver={permitirDrop} onDrop={devolverABandeja}>
+      {/* BANDEJA */}
+      <div className="portfolio-tray">
         <div className="tray-header">Bandeja</div>
 
         <div className="tray-content">
           {trayImages.map((img) => (
-            <img
-              key={img.id}
-              src={img.url}
-              className="tray-item"
-              draggable
-              onDragStart={() => handleDragStart(img.id)}
-              alt=""
-            />
+            <div key={img.id} className="tray-item-wrapper">
+              <img
+                src={img.url}
+                className="tray-item"
+                draggable={!isMobile}
+                onDragStart={() => !isMobile && handleDragStart(img.id)}
+                alt=""
+              />
+
+              {isMobile && (
+                <button
+                  className="tray-add-btn"
+                  onClick={() => {
+                    setDraggingId(img.id);
+                    colocarEnPortfolio();
+                  }}
+                >
+                  ➕ Agregar
+                </button>
+              )}
+            </div>
           ))}
         </div>
       </div>
 
+      {/* PORTFOLIO */}
       <div
         className={esPremium ? "portfolio-masonry" : "portfolio-uniform"}
-        onDragOver={permitirDrop}
-        onDrop={colocarEnPortfolio}
+        onDragOver={!isMobile ? permitirDrop : undefined}
+        onDrop={!isMobile ? colocarEnPortfolio : undefined}
       >
         {visibles.length === 0 && (
           <div className="portfolio-drop-placeholder">
-            Arrastrá tus imágenes acá para comenzar ✨
+            Arrastrá o agregá imágenes ✨
           </div>
         )}
 
-        {visibles.map((img) =>
-          esPremium ? (
-            <div
-              key={img.id}
-              className={`masonry-item col-${img.columnSpan}`}
-              draggable
-              onDragStart={() => handleDragStart(img.id)}
-            >
-              <img src={img.url} alt="" />
-            </div>
-          ) : (
-            <div
-              key={img.id}
-              className="uniform-item"
-              draggable
-              onDragStart={() => handleDragStart(img.id)}
-            >
-              <img src={img.url} alt="" />
-            </div>
-          )
-        )}
+        {visibles.map((img) => (
+          <div
+            key={img.id}
+            className="uniform-item"
+            draggable={!isMobile}
+            onDragStart={() => !isMobile && handleDragStart(img.id)}
+          >
+            <img src={img.url} alt="" />
+
+            {isMobile && (
+              <button
+                className="portfolio-remove-btn"
+                onClick={() => {
+                  setDraggingId(img.id);
+                  devolverABandeja();
+                }}
+              >
+                ✕
+              </button>
+            )}
+          </div>
+        ))}
       </div>
 
       {toast && <div className="toast">{toast}</div>}
