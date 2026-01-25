@@ -3638,6 +3638,21 @@ html, body {
   color: #991b1b;
 }
 
+:root {
+  --categories-bar-height: 0px;
+}
+
+/* ===================================
+   OFFSET GLOBAL HEADER + CATEGORIES
+   =================================== */
+
+:root {
+  --header-offset: 0px;
+}
+
+/* TODAS las páginas normales */
+
+
 @media (max-width: 768px) {
 
   .main-content {

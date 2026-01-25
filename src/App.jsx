@@ -5,17 +5,6 @@ import LegalFooter from "./components/legal/LegalFooter";
 import CookieBanner from "./components/legal/CookieBanner";
 import DenunciarPerfil from "./pages/DenunciarPerfil";
 
-import TermsPage from "./pages/TermsPage";
-import RecuperarPassword from "./pages/RecuperarPassword";
-import ResetPassword from "./pages/ResetPassword";
-import Ayuda from "./pages/Ayuda";
-import AyudaPersonalizada from "./pages/AyudaPersonalizada";
-
-import Ferias from "./pages/herramientas/Ferias";
-import Colaboradores from "./pages/herramientas/Colaboradores";
-import CrearColaborador from "./pages/herramientas/CrearColaborador";
-import MisPublicaciones from "./pages/herramientas/MisPublicaciones";
-
 // Páginas
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -27,6 +16,20 @@ import PerfilPublico from "./profile/PerfilPublico";
 import AdminRoutes from "./routes/AdminRoutes";
 import PrivacyPage from "./pages/PrivacyPage";
 import RecuperarEmail from "./pages/RecuperarEmail";
+import VerifyEmail from "./pages/VerifyEmail";
+import RecuperarPassword from "./pages/RecuperarPassword";
+import ResetPassword from "./pages/ResetPassword";
+import Ayuda from "./pages/Ayuda";
+import AyudaPersonalizada from "./pages/AyudaPersonalizada";
+import Buscar from "./pages/Buscar";
+import CookiesPage from "./pages/CookiesPage";
+import TermsPage from "./pages/TermsPage";
+
+// Herramientas
+import Ferias from "./pages/herramientas/Ferias";
+import Colaboradores from "./pages/herramientas/Colaboradores";
+import CrearColaborador from "./pages/herramientas/CrearColaborador";
+import MisPublicaciones from "./pages/herramientas/MisPublicaciones";
 
 // Asistente
 import AsistentePaso1 from "./pages/asistente/AsistentePaso1";
@@ -36,14 +39,9 @@ import AsistentePaso3 from "./pages/asistente/AsistentePaso3";
 import AsistentePasoIntermedioPortfolio from "./pages/asistente/AsistentePasoIntermedioPortfolio";
 import AsistentePaso4 from "./pages/asistente/AsistentePaso4";
 
-import Buscar from "./pages/Buscar";
-import CookiesPage from "./pages/CookiesPage";
-
+// Configuración
 import EditarPerfilPublico from "./pages/EditarPerfilPublico";
 import Configuraciones from "./pages/Configuraciones";
-import VerifyEmail from "./pages/VerifyEmail";
-
-// 🆕 Configuración
 import CambiarEmail from "./pages/CambiarEmail";
 import CambiarPassword from "./pages/CambiarPassword";
 
@@ -60,17 +58,41 @@ function App() {
         <Routes>
           {/* HOME */}
           <Route path="/" element={<Home />} />
-          <Route path="/recuperar-email" element={<RecuperarEmail />} />
-          <Route path="/verificar-email" element={<VerifyEmail />} />
+          <Route path="/buscar" element={<Buscar />} />
+
+          {/* AUTH */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot" element={<ForgotPassword />} />
           <Route path="/recuperar-password" element={<RecuperarPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/denunciar/:profileId" element={<DenunciarPerfil />}/>
+          <Route path="/recuperar-email" element={<RecuperarEmail />} />
+          <Route path="/verificar-email" element={<VerifyEmail />} />
 
           {/* AYUDA */}
           <Route path="/ayuda" element={<Ayuda />} />
           <Route
             path="/ayuda/personalizada"
             element={<AyudaPersonalizada />}
+          />
+
+          {/* LEGALES */}
+          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/cookies" element={<CookiesPage />} />
+
+          {/* PÚBLICAS */}
+          <Route path="/categoria/:slug" element={<CategoryResults />} />
+          <Route path="/perfil/:slug" element={<PerfilPublico />} />
+
+          {/* MI CUENTA */}
+          <Route
+            path="/mi-cuenta"
+            element={
+              <ProtectedRoute>
+                <MiCuenta />
+              </ProtectedRoute>
+            }
           />
 
           {/* HERRAMIENTAS */}
@@ -88,31 +110,7 @@ function App() {
             element={<MisPublicaciones />}
           />
 
-          {/* LEGALES */}
-          <Route path="/terms" element={<TermsPage />} />
-          <Route path="/privacy" element={<PrivacyPage />} />
-          <Route path="/cookies" element={<CookiesPage />} />
-
-          {/* AUTH */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgot" element={<ForgotPassword />} />
-
-          {/* PÚBLICAS */}
-          <Route path="/categoria/:slug" element={<CategoryResults />} />
-          <Route path="/perfil/:slug" element={<PerfilPublico />} />
-
-          {/* MI CUENTA (PROTEGIDA) */}
-          <Route
-            path="/mi-cuenta"
-            element={
-              <ProtectedRoute>
-                <MiCuenta />
-              </ProtectedRoute>
-            }
-          />
-
-          {/* ASISTENTE PROFESIONAL */}
+          {/* ASISTENTE */}
           <Route
             path="/asistente-profesional/paso-1"
             element={<AsistentePaso1 />}
@@ -138,11 +136,8 @@ function App() {
             element={<AsistentePaso4 />}
           />
 
-          {/* OTROS */}
+          {/* CONFIGURACIÓN */}
           <Route path="/editar-perfil" element={<EditarPerfilPublico />} />
-          <Route path="/buscar" element={<Buscar />} />
-
-          {/* CONFIGURACIONES */}
           <Route path="/configuracion" element={<Configuraciones />} />
           <Route
             path="/configuracion/email"
@@ -151,6 +146,12 @@ function App() {
           <Route
             path="/configuracion/password"
             element={<CambiarPassword />}
+          />
+
+          {/* DENUNCIA (overlay por portal) */}
+          <Route
+            path="/denunciar/:profileId"
+            element={<DenunciarPerfil />}
           />
 
           {/* ADMIN */}

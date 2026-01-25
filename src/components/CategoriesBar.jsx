@@ -1,5 +1,5 @@
 import "./CategoriesBar.css";
-import { useEffect, useState, useRef } from "react";
+import { useLayoutEffect, useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 
@@ -11,12 +11,16 @@ function CategoriesBar() {
   const navigate = useNavigate();
 
   // =========================
-  // CARGAR CATEGORÍAS (ÚNICA FUENTE: filter_options)
+  // CARGAR CATEGORÍAS
+  // useLayoutEffect → layout nace bien
   // =========================
-  useEffect(() => {
+  useLayoutEffect(() => {
+    let mounted = true;
+
     const loadCategories = async () => {
       const { data, error } = await supabase.rpc("filter_options");
 
+      if (!mounted) return;
       if (error) {
         console.error("❌ CategoriesBar: error cargando filter_options", error);
         return;
@@ -31,10 +35,14 @@ function CategoriesBar() {
     };
 
     loadCategories();
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   // =========================
-  // OCULTAR AL SCROLL
+  // OCULTAR / MOSTRAR AL SCROLL
   // =========================
   useEffect(() => {
     let lastScroll = window.scrollY;
@@ -51,7 +59,7 @@ function CategoriesBar() {
       lastScroll = currentScroll;
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -59,7 +67,19 @@ function CategoriesBar() {
     ? categories
     : categories.slice(0, 8);
 
-  if (categories.length === 0) return null;
+  // =========================
+  // PLACEHOLDER INVISIBLE
+  // evita layout shift en el primer paint
+  // =========================
+  if (categories.length === 0) {
+    return (
+      <div
+        ref={containerRef}
+        className="categories-bar placeholder"
+        aria-hidden="true"
+      />
+    );
+  }
 
   return (
     <div

@@ -8,6 +8,8 @@
   padding: 30px 40px;
   width: 100%;
   min-height: 100vh;
+  color: #111;
+  overflow-x: hidden;
 }
 
 /* BANNER */
@@ -32,6 +34,7 @@
   display: flex;
   gap: 24px;
   margin-bottom: 30px;
+  align-items: stretch;
 }
 
 .perfil-avatar-left {
@@ -42,6 +45,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0; /* FIX: evita que el avatar se achique y rompa el layout */
 }
 
 .perfil-avatar-left img {
@@ -52,12 +56,14 @@
   background: #fff;
 }
 
+/* INFO */
 .perfil-header-info {
   background: white;
   border-radius: 16px;
   padding: 20px 24px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.08);
   flex: 1;
+  min-width: 0; /* FIX: permite wrap correcto y evita overflow en flex */
 }
 
 .perfil-business { font-size: 30px; color: #111; }
@@ -65,7 +71,12 @@
 .perfil-modalidad { margin-top: 10px; }
 .perfil-location { margin-top: 10px; }
 
-.perfil-redes { display: flex; gap: 14px; margin-top: 12px; }
+.perfil-redes {
+  display: flex;
+  gap: 14px;
+  margin-top: 12px;
+  flex-wrap: wrap; /* FIX: redes no desbordan en mobile */
+}
 
 /* SECCIONES */
 .perfil-section-card {
@@ -79,12 +90,31 @@
 .perfil-descripcion { color: #111; }
 
 /* TAGS */
-.perfil-tags { gap: 8px; display: flex; flex-wrap: wrap; margin-top: 10px; }
+.perfil-tags {
+  gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+
+  /* FIX: legibilidad sin !important */
+  color: #111;
+  font-weight: 500;
+}
+
+.perfil-tags strong {
+  color: #000;
+  font-weight: 700;
+}
+
 .perfil-tags span {
-  background: #eceef4;
+  background: #e3e6f0;
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 13px;
+
+  /* FIX: legible sin !important */
+  color: #111;
+  font-weight: 500;
 }
 
 /* === PINTEREST GRID === */
@@ -107,6 +137,10 @@
   border-radius: 14px;
   cursor: pointer;
   transition: transform 0.2s ease;
+
+  /* FIX: estabilidad de columnas */
+  break-inside: avoid;
+  display: block;
 }
 
 .perfil-masonry img:hover {
@@ -122,6 +156,7 @@
   align-items: center;
   justify-content: center;
   z-index: 9999;
+  padding: 16px; /* FIX: asegura margen en pantallas chicas */
 }
 
 .perfil-lightbox img {
@@ -141,28 +176,11 @@
   cursor: pointer;
 }
 
-/* 🔥 FIX DEFINITIVO: CATEGORÍAS Y SUBCATEGORÍAS LEGIBLES */
-.perfil-tags {
-  color: #111 !important;
-  font-weight: 500;
-}
-
-.perfil-tags strong {
-  color: #000 !important;
-  font-weight: 700;
-}
-
-.perfil-tags span {
-  background: #e3e6f0 !important;
-  color: #111 !important;
-  font-weight: 500;
-}
-
-/* 🔥 FIX DEFINITIVO: TÍTULO PORTFOLIO LEGIBLE */
+/* FIX: TÍTULO PORTFOLIO LEGIBLE (sin !important) */
 .perfil-portfolio-title {
-  color: #111 !important;
+  color: #111;
   font-weight: 700;
-  opacity: 1 !important;
+  opacity: 1;
 }
 
 /* =========================
@@ -178,8 +196,8 @@
 .editar-perfil h3,
 .editar-perfil p,
 .editar-perfil span {
-  color: #222 !important;
-  opacity: 1 !important;
+  color: #222;
+  opacity: 1;
 }
 
 .editar-perfil .perfil-descripcion {
@@ -191,24 +209,23 @@
 }
 
 /* Botones edición inline */
-
 .edit-actions {
   display: flex;
-  gap: 0.6rem;
-  margin-top: 0.6rem;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .edit-btn {
   padding: 6px 14px;
-  font-size: 0.85rem;
-  border-radius: 20px;
+  font-size: 0.9rem;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
   transition: background 0.2s ease;
 }
 
 .edit-btn.save {
-  background: #222;
+  background: #111;
   color: #fff;
 }
 
@@ -217,8 +234,8 @@
 }
 
 .edit-btn.cancel {
-  background: transparent;
-  color: #666;
+  background: #e5e5e5;
+  color: #111;
 }
 
 .edit-btn.cancel:hover {
@@ -228,10 +245,6 @@
 /* ============================= */
 /* PERFIL PÚBLICO (NORMAL) */
 /* ============================= */
-
-.perfil-card {
-  color: #111;
-}
 
 .perfil-card h1,
 .perfil-card h2,
@@ -255,31 +268,6 @@
 
 .editar-perfil .perfil-descripcion {
   opacity: 1;
-}
-
-/* Botones edición */
-.edit-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.edit-btn {
-  padding: 6px 14px;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  border: none;
-}
-
-.edit-btn.save {
-  background: #111;
-  color: #fff;
-}
-
-.edit-btn.cancel {
-  background: #e5e5e5;
-  color: #111;
 }
 
 /* ===============================
@@ -344,13 +332,14 @@
   gap: 0.6rem;
 }
 
+/* FIX: selector unificado (estaba duplicado) */
 .perfil-chip {
   padding: 0.45rem 0.9rem;
   border-radius: 999px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  background: #f0f0f0;
-  color: #222;
+  background: #e9ecff;
+  color: #2a3cff;
 }
 
 .perfil-chip.categoria {
@@ -424,15 +413,9 @@
   gap: 0.5rem;
 }
 
-.perfil-chip {
-  background: #e9ecff;
-  color: #2a3cff;
-  padding: 0.45rem 0.8rem;
-  border-radius: 999px;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
+/* ===============================
+   LINK EDITAR PERFIL
+================================ */
 .perfil-edit-link {
   margin-top: 10px;
   display: inline-flex;
@@ -442,8 +425,8 @@
   font-size: 13px;
   font-weight: 500;
 
-  color: #2563eb; /* azul suave */
-  background: #eef2ff; /* fondo sutil */
+  color: #2563eb;
+  background: #eef2ff;
   border: 1px solid #c7d2fe;
   border-radius: 6px;
 
@@ -462,14 +445,6 @@
   opacity: 0.8;
 }
 
-.descripcion-wrapper {
-  position: relative;
-}
-
-.perfil-card {
-  overflow-x: hidden;
-}
-
 /* ===== DESCRIPCIÓN EDITABLE (FIX DEFINITIVO) ===== */
 
 .descripcion-wrapper {
@@ -480,7 +455,7 @@
 .descripcion-textarea {
   width: 100%;
   box-sizing: border-box;
-  min-height: 110px;     /* apenas más grande */
+  min-height: 110px;
   resize: vertical;
   padding-bottom: 28px;
 }
@@ -520,6 +495,8 @@
   display: block;
 }
 
+/* ===== PORTFOLIO MASONRY ===== */
+
 .perfil-portfolio-masonry {
   margin-top: 16px;
   column-count: 3;
@@ -545,6 +522,7 @@
   cursor: pointer;
   break-inside: avoid;
   transition: transform 0.2s ease;
+  display: block;
 }
 
 .perfil-portfolio-masonry img:hover {
@@ -556,6 +534,7 @@
    Mantiene el mismo look que la imagen (130x130, bordes 16px)
 ================================ */
 
+/* FIX: selector unificado (estaba duplicado) */
 .perfil-avatar-left .avatar-placeholder {
   width: 130px;
   height: 130px;
@@ -564,35 +543,12 @@
   align-items: center;
   justify-content: center;
 
-  /* tipografía similar a un avatar */
   font-weight: 800;
   font-size: 52px;
   letter-spacing: 1px;
   color: #111;
 
-  /* que se vea limpio sobre pastel */
   background: #e6e6fa;
-  user-select: none;
-}
-
-/* ===============================
-   AVATAR FALLBACK (INICIAL + COLOR)
-   Solo para PERFIL PÚBLICO
-================================ */
-
-.perfil-avatar-left .avatar-placeholder {
-  width: 130px;
-  height: 130px;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-weight: 800;
-  font-size: 52px;
-  letter-spacing: 1px;
-  color: #111;
-
   user-select: none;
 }
 
@@ -603,23 +559,44 @@
   right: 0;
 }
 
+/* FIX: botón sin scale() (hitbox estable) */
 .perfil-menu-btn {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
-  color: #555;
+
+  /* tamaño real en vez de transform */
+  padding: 8px;
+  color: #333;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.perfil-menu-btn:hover {
+  background: #f3f4f6;
+}
+
+/* Si el ícono viene por SVG, lo hacemos más grande sin transform */
+.perfil-menu-btn svg {
+  width: 20px;
+  height: 20px;
 }
 
 .perfil-menu-dropdown {
   position: absolute;
   right: 0;
-  top: 24px;
+  top: 28px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   padding: 6px;
   z-index: 10;
+  min-width: 180px;
 }
 
 .perfil-menu-item {
@@ -640,20 +617,132 @@
   background: #fee2e2;
 }
 
-.perfil-menu-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 6px;          /* antes 4px */
-  color: #333;           /* más contraste */
-  transform: scale(1.2); /* agranda visualmente */
+/* ===============================
+   RESPONSIVE LIMPIO (REAL)
+   - Mobile -> Tablet -> Notebook -> Desktop -> UltraWide
+================================ */
+
+/* Ultra-wide: evita que se estire demasiado el contenido general si usás .perfil-card-wide */
+@media (min-width: 1400px) {
+  .perfil-card-wide {
+    max-width: 1200px;
+  }
 }
 
-.perfil-menu-btn:hover {
-  background: #f3f4f6;
-  border-radius: 999px;
+/* Notebook / tablets grandes */
+@media (max-width: 1024px) {
+  .perfil-card {
+    padding: 26px 28px;
+  }
+
+  .perfil-banner {
+    margin-bottom: 36px;
+  }
+
+  .perfil-header-row {
+    gap: 18px;
+  }
+
+  .perfil-section-card {
+    padding: 20px 22px;
+  }
 }
 
-.perfil-menu-btn {
-  transform: scale(1.35);
+/* Tablet */
+@media (max-width: 768px) {
+  .perfil-card {
+    padding: 18px 16px;
+  }
+
+  .perfil-banner {
+    height: 200px;
+    margin-bottom: 28px;
+  }
+
+  .perfil-header-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .perfil-header-info {
+    width: 100%;
+    padding: 18px 16px;
+  }
+
+  .perfil-redes {
+    justify-content: center;
+  }
+
+  .perfil-section-card {
+    padding: 18px 16px;
+  }
+
+  .perfil-categorias-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .perfil-card {
+    padding: 14px 12px;
+  }
+
+  .perfil-banner {
+    height: 170px;
+    border-radius: 14px;
+    margin-bottom: 22px;
+  }
+
+  .perfil-business {
+    font-size: 24px;
+  }
+
+  .perfil-avatar-left {
+    width: 132px;
+    height: 132px;
+    border-radius: 18px;
+  }
+
+  .perfil-avatar-left img,
+  .perfil-avatar-left .avatar-placeholder {
+    width: 118px;
+    height: 118px;
+    border-radius: 14px;
+    font-size: 46px;
+  }
+
+  .perfil-section-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .perfil-tags span {
+    font-size: 12.5px;
+    padding: 6px 10px;
+  }
+
+  .perfil-portfolio-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+}
+
+/* Ultra pequeño (320px / celulares chicos) */
+@media (max-width: 360px) {
+  .perfil-card {
+    padding: 12px 10px;
+  }
+
+  .perfil-banner {
+    height: 155px;
+  }
+
+  .perfil-business {
+    font-size: 22px;
+  }
+
+  .perfil-portfolio-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }

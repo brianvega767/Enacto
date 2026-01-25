@@ -1,6 +1,6 @@
 .categories-bar {
-  position: absolute;
-  top: 100%;
+  position: sticky;
+  top: 0;
   left: 0;
   width: 100%;
   display: flex;
@@ -38,4 +38,9 @@
 /* 🔧 Subir levemente las categorías para no tapar el botón del sidebar */
 .categories-bar {
   margin-top: -6px; /* ajustá entre -4px y -10px si querés afinar */
+}
+
+.categories-bar.placeholder {
+  visibility: hidden;
+  height: 56px; /* la altura REAL aproximada de la barra */
 }

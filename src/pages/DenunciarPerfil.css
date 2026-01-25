@@ -1,13 +1,16 @@
 /* 🔒 VISTA AISLADA – TAPA TODO EL LAYOUT */
 .denuncia-wrapper {
   position: fixed;
-  inset: 0;                 /* top, right, bottom, left = 0 */
-  background: #f9fafb;      /* fondo limpio */
+  inset: 0;
+  background: #f9fafb;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 50;              /* por encima del layout */
+  z-index: 50;
   padding: 32px;
+
+  /* FIX: evita scroll fantasma en mobile */
+  overflow-y: auto;
 }
 
 /* 🔥 CARD GRANDE Y PROTAGONISTA */
@@ -64,6 +67,9 @@
 .denuncia-card textarea {
   resize: none;
   line-height: 1.6;
+
+  /* FIX: control visual en pantallas chicas */
+  min-height: 140px;
 }
 
 /* ===== CONTADOR ===== */
@@ -117,4 +123,98 @@
   font-size: 18px;
   font-weight: 600;
   color: #065f46;
+}
+
+/* ===============================
+   RESPONSIVE REAL
+================================ */
+
+/* Notebook */
+@media (max-width: 1024px) {
+  .denuncia-card {
+    padding: 44px;
+  }
+
+  .denuncia-card h1 {
+    font-size: 30px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .denuncia-wrapper {
+    padding: 24px;
+  }
+
+  .denuncia-card {
+    padding: 36px;
+    border-radius: 20px;
+  }
+
+  .denuncia-card h1 {
+    font-size: 28px;
+  }
+
+  .denuncia-profile-name {
+    margin-bottom: 24px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .denuncia-wrapper {
+    padding: 16px;
+    align-items: flex-start; /* FIX: evita cortar el top */
+  }
+
+  .denuncia-card {
+    padding: 24px;
+    border-radius: 18px;
+  }
+
+  .denuncia-card h1 {
+    font-size: 24px;
+  }
+
+  .denuncia-subtitle {
+    font-size: 15px;
+  }
+
+  .denuncia-profile-name {
+    font-size: 17px;
+    margin-bottom: 20px;
+  }
+
+  .denuncia-card label {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .denuncia-card select,
+  .denuncia-card textarea {
+    font-size: 15px;
+    padding: 14px 16px;
+  }
+
+  .denuncia-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .denuncia-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Ultra pequeño (320px) */
+@media (max-width: 360px) {
+  .denuncia-card {
+    padding: 20px;
+  }
+
+  .denuncia-card h1 {
+    font-size: 22px;
+  }
 }

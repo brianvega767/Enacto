@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 import { useAuth } from "../context/AuthContext";
-import Sidebar from "../components/Sidebar";
-import Header from "../components/Header";
-import "../App.css";
+import { createPortal } from "react-dom";
 import "./DenunciarPerfil.css";
 
 const MAX_CHARS = 300;
@@ -16,7 +14,6 @@ function DenunciarPerfil() {
 
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [offset, setOffset] = useState(0);
 
   const [reason, setReason] = useState("");
   const [description, setDescription] = useState("");
@@ -24,30 +21,11 @@ function DenunciarPerfil() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
-  // =========================
-  // OFFSET HEADER + CATEGORIES
-  // =========================
+  // 🔒 Bloquear scroll del body (overlay real)
   useEffect(() => {
-    function updateOffset() {
-      const header = document.querySelector(".header");
-      const categories = document.querySelector(".categories-bar");
-
-      let total = 0;
-      if (header) total += header.getBoundingClientRect().height;
-      if (categories && !categories.classList.contains("hidden")) {
-        total += categories.getBoundingClientRect().height;
-      }
-
-      setOffset(total + 32);
-    }
-
-    updateOffset();
-    window.addEventListener("resize", updateOffset);
-    window.addEventListener("scroll", updateOffset);
-
+    document.body.style.overflow = "hidden";
     return () => {
-      window.removeEventListener("resize", updateOffset);
-      window.removeEventListener("scroll", updateOffset);
+      document.body.style.overflow = "";
     };
   }, []);
 
@@ -70,19 +48,26 @@ function DenunciarPerfil() {
   }, [profileId]);
 
   if (!user) {
-    return (
+    return createPortal(
       <p style={{ padding: 40 }}>
         Debés iniciar sesión para denunciar un perfil.
-      </p>
+      </p>,
+      document.body
     );
   }
 
   if (loading) {
-    return <p style={{ padding: 40 }}>Cargando…</p>;
+    return createPortal(
+      <p style={{ padding: 40 }}>Cargando…</p>,
+      document.body
+    );
   }
 
   if (!profile) {
-    return <p style={{ padding: 40 }}>Perfil no encontrado.</p>;
+    return createPortal(
+      <p style={{ padding: 40 }}>Perfil no encontrado.</p>,
+      document.body
+    );
   }
 
   const handleSubmit = async (e) => {
@@ -122,103 +107,90 @@ function DenunciarPerfil() {
     setSending(false);
   };
 
-  return (
-    <div className="layout-container">
-      <Sidebar />
+  return createPortal(
+    <div className="denuncia-wrapper">
+      <div className="denuncia-card">
+        <h1>Denunciar perfil</h1>
 
-      <div className="main-content">
-        <Header />
+        <p className="denuncia-subtitle">
+          Estás denunciando el perfil de:
+        </p>
 
-        <div
-          className="denuncia-wrapper"
-          style={{
-            paddingTop: offset,
-            minHeight: `calc(100vh - ${offset}px)`,
-          }}
-        >
-          <div className="denuncia-card">
-            <h1>Denunciar perfil</h1>
+        <strong className="denuncia-profile-name">
+          {profile.full_name}
+        </strong>
 
-            <p className="denuncia-subtitle">
-              Estás denunciando el perfil de:
+        {success ? (
+          <>
+            <p className="denuncia-success">
+              Gracias. El administrador revisará tu denuncia y tomará las
+              medidas necesarias.
             </p>
 
-            <strong className="denuncia-profile-name">
-              {profile.full_name}
-            </strong>
+            <button
+              className="denuncia-btn"
+              onClick={() => navigate(-1)}
+            >
+              Volver
+            </button>
+          </>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <label>
+              Motivo *
+              <select
+                value={reason}
+                onChange={(e) => setReason(e.target.value)}
+              >
+                <option value="">Seleccionar motivo</option>
+                <option value="Estafa">Estafa</option>
+                <option value="Incumplimiento">Incumplimiento</option>
+                <option value="Mal trato">Mal trato</option>
+                <option value="Perfil falso">Perfil falso</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </label>
 
-            {success ? (
-              <>
-                <p className="denuncia-success">
-                  Gracias. El administrador revisará tu denuncia y tomará las
-                  medidas necesarias.
-                </p>
+            <label>
+              Contanos qué pasó (opcional)
+              <textarea
+                rows={5}
+                value={description}
+                maxLength={MAX_CHARS}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Describí brevemente la situación. Máximo 300 caracteres."
+              />
+              <div className="denuncia-counter">
+                {description.length} / {MAX_CHARS}
+              </div>
+            </label>
 
-                <button
-                  className="denuncia-btn"
-                  onClick={() => navigate(-1)}
-                >
-                  Volver
-                </button>
-              </>
-            ) : (
-              <form onSubmit={handleSubmit}>
-                <label>
-                  Motivo *
-                  <select
-                    value={reason}
-                    onChange={(e) => setReason(e.target.value)}
-                  >
-                    <option value="">Seleccionar motivo</option>
-                    <option value="Estafa">Estafa</option>
-                    <option value="Incumplimiento">Incumplimiento</option>
-                    <option value="Mal trato">Mal trato</option>
-                    <option value="Perfil falso">Perfil falso</option>
-                    <option value="Otro">Otro</option>
-                  </select>
-                </label>
-
-                <label>
-                  Contanos qué pasó (opcional)
-                  <textarea
-                    rows={5}
-                    value={description}
-                    maxLength={MAX_CHARS}
-                    onChange={(e) => setDescription(e.target.value)}
-                    placeholder="Describí brevemente la situación. Máximo 300 caracteres."
-                  />
-                  <div className="denuncia-counter">
-                    {description.length} / {MAX_CHARS}
-                  </div>
-                </label>
-
-                {error && (
-                  <p className="denuncia-error">{error}</p>
-                )}
-
-                <div className="denuncia-actions">
-                  <button
-                    type="button"
-                    className="denuncia-btn secondary"
-                    onClick={() => navigate(-1)}
-                  >
-                    Cancelar
-                  </button>
-
-                  <button
-                    type="submit"
-                    className="denuncia-btn"
-                    disabled={sending}
-                  >
-                    {sending ? "Enviando…" : "Enviar denuncia"}
-                  </button>
-                </div>
-              </form>
+            {error && (
+              <p className="denuncia-error">{error}</p>
             )}
-          </div>
-        </div>
+
+            <div className="denuncia-actions">
+              <button
+                type="button"
+                className="denuncia-btn secondary"
+                onClick={() => navigate(-1)}
+              >
+                Cancelar
+              </button>
+
+              <button
+                type="submit"
+                className="denuncia-btn"
+                disabled={sending}
+              >
+                {sending ? "Enviando…" : "Enviar denuncia"}
+              </button>
+            </div>
+          </form>
+        )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 

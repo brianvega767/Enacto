@@ -2,7 +2,7 @@ import "./Header.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import CategoriesBar from "./CategoriesBar";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { createPortal } from "react-dom";
 import { supabase } from "../supabaseClient";
 
@@ -10,6 +10,9 @@ function Header({ search, setSearch }) {
   const navigate = useNavigate();
   const location = useLocation();
   const { user, profile, loading } = useAuth();
+
+  const headerRef = useRef(null);
+  const categoriesRef = useRef(null);
 
   const [showFilters, setShowFilters] = useState(false);
   const [allCategories, setAllCategories] = useState([]);
@@ -27,6 +30,32 @@ function Header({ search, setSearch }) {
   const isBuscarPage = location.pathname === "/buscar";
   const allowSuggestions = location.pathname === "/" || isBuscarPage;
 
+  // =========================
+  // MEDIR ALTURA REAL DE CATEGORIES BAR
+  // =========================
+  
+  useLayoutEffect(() => {
+    const bar = document.querySelector(".categories-bar");
+    if (!bar) return;
+
+    const updateHeight = () => {
+      const height = bar.offsetHeight || 0;
+      document.documentElement.style.setProperty(
+        "--categories-bar-height",
+        `${height}px`
+      );
+    };
+
+    updateHeight();
+
+    // Por si cambia por resize / responsive
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, []);
+
+  // =========================
+  // CARGAR CATEGORÍAS (AUTOCOMPLETE)
+  // =========================
   useEffect(() => {
     const loadCategories = async () => {
       const { data } = await supabase.rpc("filter_options");
@@ -155,10 +184,9 @@ function Header({ search, setSearch }) {
   };
 
   return (
-    <header className="header">
+    <header ref={headerRef} className="header">
       <div className="header-inner">
 
-        {/* BOTÓN SIDEBAR (oculto en desktop por CSS) */}
         <button
           className="mobile-menu-btn"
           onClick={toggleSidebar}
@@ -167,12 +195,10 @@ function Header({ search, setSearch }) {
           ☰
         </button>
 
-        {/* LOGO */}
         <Link to="/" className="logo">
           ENACTO
         </Link>
 
-        {/* BUSCADOR */}
         <div className="search-wrapper">
           <input
             ref={inputRef}
@@ -192,7 +218,6 @@ function Header({ search, setSearch }) {
           </button>
         </div>
 
-        {/* MI CUENTA */}
         <div className="header-actions">
           {!loading && !user && (
             <Link to="/login" className="header-login-btn">
@@ -217,7 +242,6 @@ function Header({ search, setSearch }) {
             </div>
           )}
         </div>
-
       </div>
 
       {showFilters && (
