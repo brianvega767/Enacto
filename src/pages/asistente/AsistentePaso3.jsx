@@ -13,6 +13,10 @@ const generarSlug = (texto) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
+// 🛡️ límites claros
+const MAX_IMAGE_MB = 5;
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
+
 function AsistentePaso3() {
   const navigate = useNavigate();
   const { showToast } = useToast();
@@ -65,7 +69,7 @@ function AsistentePaso3() {
   const mostrarEnvios = perfilTipo === "productos" || perfilTipo === "ambos";
 
   // =========================
-  // CARGAR PROVINCIAS
+  // PROVINCIAS
   // =========================
   useEffect(() => {
     async function loadProvincias() {
@@ -81,7 +85,7 @@ function AsistentePaso3() {
   }, []);
 
   // =========================
-  // CARGAR LOCALIDADES
+  // LOCALIDADES
   // =========================
   useEffect(() => {
     if (!form.provincia) {
@@ -111,6 +115,16 @@ function AsistentePaso3() {
 
     if (name === "foto") {
       const file = files?.[0] || null;
+
+      // 🔍 DEBUG REAL
+      if (file) {
+        console.log("📸 IMAGEN SELECCIONADA:", {
+          name: file.name,
+          type: file.type,
+          sizeMB: (file.size / 1024 / 1024).toFixed(2),
+        });
+      }
+
       setForm((prev) => ({ ...prev, foto: file }));
       setPreviewFoto(file ? URL.createObjectURL(file) : null);
       return;
@@ -150,6 +164,17 @@ function AsistentePaso3() {
 
     try {
       if (form.foto) {
+        // 🛡️ VALIDACIONES CLARAS
+        if (!ALLOWED_TYPES.includes(form.foto.type)) {
+          showToast("Formato no soportado. Usá JPG, PNG o WEBP.");
+          return;
+        }
+
+        if (form.foto.size > MAX_IMAGE_MB * 1024 * 1024) {
+          showToast("La imagen supera los 5MB.");
+          return;
+        }
+
         const filePath = `${user.id}/avatar.jpg`;
 
         const { error: uploadError } = await supabase.storage
@@ -160,7 +185,9 @@ function AsistentePaso3() {
           });
 
         if (uploadError) {
-          showToast("Error al subir la imagen.");
+          // 🔥 ERROR REAL, SIN ADIVINAR
+          console.error("❌ UPLOAD ERROR:", uploadError);
+          showToast("Error al subir la imagen (ver consola).");
           return;
         }
 
@@ -196,7 +223,6 @@ function AsistentePaso3() {
         avatar_url: avatarUrl,
       };
 
-      // 🔥 FIX REAL: upsert + select explícito
       const { error } = await supabase
         .from("profiles")
         .upsert(payload, { onConflict: "id" })
@@ -217,13 +243,13 @@ function AsistentePaso3() {
         replace: true,
       });
     } catch (e) {
-      console.error(e);
+      console.error("❌ ERROR INESPERADO:", e);
       showToast("Error inesperado al guardar.");
     }
   };
 
   // =========================
-  // RENDER
+  // RENDER (INTACTO)
   // =========================
   return (
     <div className="asistente-page asistente-bg-ultra asistente-fixed asistente-paso3">
