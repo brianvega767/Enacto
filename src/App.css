@@ -3650,6 +3650,60 @@ html, body {
   --header-offset: 0px;
 }
 
+/* Scope específico */
+.asistente-paso3 {
+  box-sizing: border-box;
+}
+
+/* Card principal */
+.asistente-paso3-card {
+  display: flex;
+  gap: 32px;
+}
+
+/* Columnas */
+.asistente-paso3-card .asistente-form-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Inputs generales */
+.asistente-paso3 input,
+.asistente-paso3 select,
+.asistente-paso3 textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+/* Textarea usable */
+.asistente-paso3 textarea {
+  min-height: 120px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+/* Upload más compacto */
+.asistente-paso3 .perfil-upload-box-dark.compact {
+  padding: 12px;
+  gap: 12px;
+}
+
+.asistente-paso3 .perfil-avatar-preview.small {
+  width: 64px;
+  height: 64px;
+}
+
+/* Footer */
+.asistente-paso3 .asistente-footer {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+}
 /* TODAS las páginas normales */
 
 
@@ -3697,3 +3751,169 @@ html, body {
   }
 }
 
+/* =========================================
+   ASISTENTE PROFESIONAL – PASO 3
+   SOLO ajustes para pantallas NO desktop
+========================================= */
+
+/* =========================
+   TABLET + MOBILE
+========================= */
+@media (max-width: 1024px) {
+
+  /* La card deja de ser 2 columnas */
+  .asistente-paso3-card {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Las columnas pasan a ocupar todo el ancho */
+  .asistente-paso3-card .asistente-form-col {
+    width: 100%;
+    flex: none;
+  }
+
+  /* Cada sección ocupa toda la fila */
+  .asistente-paso3 .asistente-form-section {
+    width: 100%;
+  }
+
+  /* Inputs más cómodos */
+  .asistente-paso3 input,
+  .asistente-paso3 select,
+  .asistente-paso3 textarea {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 15px 16px;
+  }
+
+  /* Textarea usable */
+  .asistente-paso3 textarea {
+    min-height: 120px;
+  }
+
+  /* Footer separado */
+  .asistente-paso3 .asistente-footer {
+    margin-top: 32px;
+  }
+
+  /* Botón más accesible */
+  .asistente-paso3 .asistente-btn {
+    width: 100%;
+    max-width: 420px;
+    padding: 16px;
+    font-size: 1rem;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+  /* Menos padding lateral */
+  .asistente-paso3 {
+    padding: 24px 16px;
+  }
+
+  /* Card más compacta */
+  .asistente-paso3-card {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  /* Título más legible */
+  .asistente-paso3 .asistente-title {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+}
+
+/* =========================
+   MOBILE CHICO
+========================= */
+@media (max-width: 480px) {
+
+  .asistente-paso3 {
+    padding: 20px 12px;
+  }
+
+  .asistente-paso3-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .asistente-paso3 input,
+  .asistente-paso3 select,
+  .asistente-paso3 textarea {
+    font-size: 0.9rem;
+    padding: 14px;
+  }
+
+  .asistente-paso3 textarea {
+    min-height: 100px;
+  }
+
+  .asistente-paso3 .asistente-btn {
+    border-radius: 999px;
+  }
+}
+
+/* =========================================
+   ASISTENTE PASO 3 – MOBILE VERTICAL REAL
+   (gana la cascada correctamente)
+========================================= */
+
+@media (max-width: 1024px) {
+
+  /* Card principal: anula grid / columnas */
+  .asistente-page.asistente-paso3
+  .asistente-card-form.asistente-paso3-card {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Columnas dejan de existir */
+  .asistente-page.asistente-paso3
+  .asistente-card-form.asistente-paso3-card
+  .asistente-form-col {
+    width: 100%;
+    flex: none;
+  }
+
+  /* Cada sección ocupa una fila */
+  .asistente-page.asistente-paso3
+  .asistente-form-section {
+    width: 100%;
+  }
+
+  /* Inputs cómodos */
+  .asistente-page.asistente-paso3 input,
+  .asistente-page.asistente-paso3 select,
+  .asistente-page.asistente-paso3 textarea {
+    width: 100%;
+  }
+}
+
+/* =========================================
+   ASISTENTE PASO 3 – FIX CORTE EN MOBILE
+========================================= */
+@media (max-width: 1024px) {
+
+  /* El layout deja de ser fijo */
+  .asistente-page.asistente-paso3.asistente-fixed {
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+
+  /* La card puede crecer libremente */
+  .asistente-page.asistente-paso3
+  .asistente-card-form.asistente-paso3-card {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+}
