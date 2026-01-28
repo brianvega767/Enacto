@@ -1,18 +1,22 @@
 import "./Sidebar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import FeriasAccessModal from "../components/FeriasAccessModal";
+import PremiumToolModal from "../components/PremiumToolModal";
 
 function Sidebar() {
   const [openLegales, setOpenLegales] = useState(false);
   const [showFeriantesModal, setShowFeriantesModal] = useState(false);
+  const [showPremiumModal, setShowPremiumModal] = useState(false);
   const [targetTool, setTargetTool] = useState(null);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const { profile } = useAuth();
+  const navigate = useNavigate();
 
-  const isProfessional = profile?.is_professional === true;
+  const isPremium = profile?.is_premium === true;
+
   const hasFeriasAccess =
     profile?.tools_access?.includes("ferias") === true;
 
@@ -27,6 +31,17 @@ function Sidebar() {
     }
   }, [isMobileOpen]);
 
+  const handlePremiumToolClick = (tool, targetPath) => {
+    if (!isPremium) {
+      setTargetTool(tool);
+      setShowPremiumModal(true);
+      return;
+    }
+
+    navigate(targetPath);
+    setIsMobileOpen(false);
+  };
+
   return (
     <>
       {/* 🔘 BOTÓN SOLO MOBILE */}
@@ -40,16 +55,10 @@ function Sidebar() {
 
       <aside className="sidebar">
         <nav className="sidebar-nav">
-          {/* =====================
-              MI CUENTA
-             ===================== */}
           <Link to="/mi-cuenta" onClick={() => setIsMobileOpen(false)}>
             👤 Mi cuenta
           </Link>
 
-          {/* =====================
-              LEGALES
-             ===================== */}
           <button
             type="button"
             className="sidebar-link-button"
@@ -60,24 +69,13 @@ function Sidebar() {
 
           {openLegales && (
             <div className="sidebar-submenu">
-              <Link to="/terms" onClick={() => setIsMobileOpen(false)}>
-                Términos y Condiciones
-              </Link>
-              <Link to="/privacy" onClick={() => setIsMobileOpen(false)}>
-                Política de Privacidad
-              </Link>
-              <Link to="/cookies" onClick={() => setIsMobileOpen(false)}>
-                Cookies
-              </Link>
+              <Link to="/terms">Términos y Condiciones</Link>
+              <Link to="/privacy">Política de Privacidad</Link>
+              <Link to="/cookies">Cookies</Link>
             </div>
           )}
 
-          {/* =====================
-              AYUDA
-             ===================== */}
-          <Link to="/ayuda" onClick={() => setIsMobileOpen(false)}>
-            🆘 Ayuda
-          </Link>
+          <Link to="/ayuda">🆘 Ayuda</Link>
 
           {/* =====================
               HERRAMIENTAS PARA FERIANTES
@@ -117,26 +115,58 @@ function Sidebar() {
           </div>
 
           {/* =====================
-              HERRAMIENTAS PROFESIONALES
+              HERRAMIENTAS PREMIUM
              ===================== */}
-          {isProfessional && (
-            <div className="sidebar-section">
-              <div className="sidebar-section-title subtle">
-                🔧 Herramientas para profesionales
-              </div>
+          <div className="sidebar-section">
+            <div className="sidebar-section-title highlight">
+              💎 Herramientas Premium
             </div>
-          )}
+
+            <button
+              className="sidebar-tool-link"
+              onClick={() =>
+                handlePremiumToolClick(
+                  "textos",
+                  "/herramientas/generador-textos"
+                )
+              }
+            >
+              🧠 Generador de textos
+            </button>
+
+            <button
+              className="sidebar-tool-link"
+              onClick={() =>
+                handlePremiumToolClick(
+                  "estrategias",
+                  "/herramientas/estrategias"
+                )
+              }
+            >
+              🚀 Generador de estrategias
+            </button>
+          </div>
         </nav>
       </aside>
 
       {/* =====================
-          MODAL DE ACCESO
+          MODALES
          ===================== */}
       {showFeriantesModal && (
         <FeriasAccessModal
           targetTool={targetTool}
           onClose={() => {
             setShowFeriantesModal(false);
+            setTargetTool(null);
+          }}
+        />
+      )}
+
+      {showPremiumModal && (
+        <PremiumToolModal
+          tool={targetTool}
+          onClose={() => {
+            setShowPremiumModal(false);
             setTargetTool(null);
           }}
         />

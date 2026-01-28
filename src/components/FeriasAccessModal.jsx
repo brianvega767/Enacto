@@ -48,11 +48,10 @@ function FeriasAccessModal({ onClose, targetTool }) {
 
   /* =====================
      REDIRECCIÓN AUTOMÁTICA
-     (CIERRA MODAL ANTES)
      ===================== */
   useEffect(() => {
     if (requestStatus === "approved") {
-      onClose(); // 🔑 CIERRA EL MODAL PRIMERO
+      onClose();
 
       if (targetTool === "colaboradores") {
         navigate("/herramientas/colaboradores");
@@ -111,7 +110,9 @@ function FeriasAccessModal({ onClose, targetTool }) {
             title="Cuenta profesional requerida"
             text="Estas herramientas están pensadas para profesionales. Podés crear tu cuenta profesional gratis."
             buttonText="Crear cuenta profesional"
-            onClick={() => navigate("/asistente/paso-1")}
+            onClick={() =>
+              navigate("/asistente-profesional/paso-1")
+            }
           />
         )}
 
@@ -134,8 +135,6 @@ function FeriasAccessModal({ onClose, targetTool }) {
             onClick={onClose}
           />
         )}
-
-        {/* 🚫 NO HAY UI PARA "approved" */}
       </div>
     </div>
   );
@@ -163,7 +162,7 @@ function Content({ title, text, buttonText, onClick }) {
 }
 
 /* =====================================================
-   ESTILOS (TODO LOCAL, SIN CAMBIOS)
+   ESTILOS (SIN CAMBIOS)
    ===================================================== */
 
 const overlayStyle = {

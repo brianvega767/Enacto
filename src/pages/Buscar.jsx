@@ -102,7 +102,7 @@ function Buscar() {
     }
 
     setFilters({
-      categoria: categoria || "",
+      categoria: uiCap(normalizeCategory(categoria)) || "",
       subcategoria: params.get("subcategoria") || "",
       provincia: params.get("provincia") || "",
       localidad: params.get("localidad") || "",

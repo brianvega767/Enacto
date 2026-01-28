@@ -65,6 +65,12 @@ function Feed({ search, filtros, filters, showHero = true }) {
     const term = search?.trim();
 
    // 🔍 BÚSQUEDA / FILTROS
+   console.log("🔎 Feed.cargarFeed", {
+  search,
+  effectiveFilters,
+  hasActiveFilters,
+});
+
 if ((term && term.length > 0) || hasActiveFilters) {
   const payload = {
     p_text: term || null,
@@ -80,6 +86,8 @@ if ((term && term.length > 0) || hasActiveFilters) {
     "search_profiles",
     payload
   );
+  console.log("📡 RPC response", { data, error });
+
 
   if (error) {
     console.error("❌ RPC search_profiles FAILED", error);

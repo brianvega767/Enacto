@@ -133,6 +133,40 @@
   background: rgba(0, 0, 0, 0.05);
 }
 
+/* =====================
+   BOTONES DE HERRAMIENTAS PREMIUM (FIX)
+   ===================== */
+
+button.sidebar-tool-link {
+  background: transparent;
+  border: none;
+
+  /* 👇 esto es CLAVE: replicamos el <a> */
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+
+  border-radius: 8px;
+  font-size: 14.5px;
+  color: #333;
+  text-align: left;
+  cursor: pointer;
+
+  font-family: inherit;
+}
+
+/* hover igual al link */
+button.sidebar-tool-link:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* quitar focus feo del navegador */
+button.sidebar-tool-link:focus {
+  outline: none;
+}
+
+
 /* =========================
    MOBILE
    ========================= */

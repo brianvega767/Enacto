@@ -1,0 +1,204 @@
+.premium-page {
+  min-height: calc(100vh - 120px);
+  padding: clamp(40px, 6vw, 70px) 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    #f9fafb 0%,
+    #eef2f7 100%
+  );
+}
+
+/* =====================
+   HERO
+   ===================== */
+
+.premium-hero {
+  max-width: 760px;
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.premium-hero h1 {
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+
+.premium-subtitle {
+  font-size: clamp(1rem, 2.8vw, 1.15rem);
+  color: #374151;
+  line-height: 1.6;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* =====================
+   CARD
+   ===================== */
+
+.premium-card {
+  background: #ffffff;
+  border-radius: 26px;
+  padding: clamp(28px, 5vw, 40px);
+  max-width: 560px;
+  width: 100%;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.18);
+}
+
+/* =====================
+   TITLE
+   ===================== */
+
+.premium-card h2 {
+  font-size: clamp(1.25rem, 3vw, 1.45rem);
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #111827;
+}
+
+/* =====================
+   FEATURES
+   ===================== */
+
+.premium-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.premium-features li {
+  font-size: clamp(0.95rem, 2.5vw, 1rem);
+  color: #111827;
+  line-height: 1.45;
+}
+
+.premium-features strong {
+  font-weight: 700;
+}
+
+.premium-features span {
+  display: block;
+  font-size: clamp(0.85rem, 2.3vw, 0.9rem);
+  color: #404d5e;
+  margin-top: 4px;
+}
+
+/* =====================
+   PRICE + CTA
+   ===================== */
+
+.premium-price-box {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 26px;
+  text-align: center;
+}
+
+.price {
+  font-size: clamp(1.9rem, 5vw, 2.2rem);
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 12px;
+}
+
+.price span {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.premium-cta {
+  margin-top: 14px;
+  padding: 15px 30px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #0f172a, #1f2937);
+  color: #ffffff;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.premium-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+}
+
+.already-premium {
+  margin-top: 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #059669;
+}
+
+/* =====================
+   LEGAL
+   ===================== */
+
+.premium-legal {
+  margin-top: 22px;
+  font-size: 0.8rem;
+  color: #6b7280;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* =====================
+   BACK BUTTON
+   ===================== */
+
+/* =====================
+   WRAPPER
+   ===================== */
+
+.premium-wrapper {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =====================
+   BACK BUTTON (AJUSTADO)
+   ===================== */
+
+.premium-back {
+  align-self: flex-start;
+  margin-bottom: 16px;
+  background: transparent;
+  border: none;
+  color: #374151;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 2px;
+  transition: color 0.15s ease;
+}
+
+.premium-back:hover {
+  color: #111827;
+}
+
+
+/* =====================
+   MOBILE TWEAKS
+   ===================== */
+
+@media (max-width: 480px) {
+  .premium-card {
+    border-radius: 20px;
+  }
+
+  .premium-features {
+    gap: 16px;
+  }
+}
