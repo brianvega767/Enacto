@@ -30,9 +30,9 @@ header {
   top: 0;
   z-index: 10;
   width: 100%;
-  backdrop-filter: blur(12px);
-  background: rgba(5, 8, 22, 0.9);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: #f5f6f8;   /* ✅ MISMO COLOR QUE BODY / FEED */
+  backdrop-filter: none; /* ✅ elimina efecto */
+  border-bottom: none;   /* ✅ no separación visual */
 }
 
 .header-inner {
@@ -349,21 +349,6 @@ header {
   color: crimson;
   font-size: 0.85rem;
   margin-bottom: 0.5rem;
-}
-
-.layout-container {
-  background: #ffffff;
-  min-height: 100vh;
-}
-
-.main-content {
-  background: #ffffff;
-}
-
-.feed-wrapper {
-  background: #ffffff;   /* ✅ fondo blanco real */
-  min-height: 100vh;
-  padding-bottom: 3rem;
 }
 
 /* ===== DASHBOARD USUARIO COMÚN ===== */
@@ -2932,12 +2917,35 @@ html, body {
   box-sizing: border-box;
 }
 
-/* ===== CENTRADO VISUAL DEL CONTENIDO ===== */
+/* ===========================
+   FONDO UNIFICADO HOME + FEED
+   =========================== */
 
-.main-content {
-  display: flex;
-  justify-content: center;
+body {
+  background: #14772a;
 }
+
+/* ===========================
+   CARDS QUE RESALTAN
+   =========================== */
+
+.feed-card,
+.card,
+.buscar-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+
+/* hover sutil */
+.feed-card:hover,
+.card:hover,
+.buscar-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+}
+
 
 .feed-wrapper {
   width: 100%;
@@ -3042,6 +3050,7 @@ html, body {
   max-width: 1100px;
   margin: 0 auto;
   padding: 24px;
+  background:#f2f6ff !important
 }
 
 /* ========================= */
@@ -3178,16 +3187,7 @@ html, body {
 /* El main ya NO empuja el layout con margen */
 .main-content {
   margin-left: 0 !important;
-}
-
-/* Evita que el contenedor padre tape el feed */
-.main-content {
-  background: transparent !important;
-}
-
-/* El feed sigue siendo blanco y centrado */
-.feed-wrapper {
-  background: #ffffff;
+  background: #f2f6ff
 }
 
 /* ===========================
@@ -3197,7 +3197,6 @@ html, body {
 /* El main se separa del sidebar SIN tapar contenido */
 .main-content {
   padding-left: 220px;
-  background: transparent !important;
 }
 
 /* Sidebar colapsado */

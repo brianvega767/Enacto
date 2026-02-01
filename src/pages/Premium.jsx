@@ -7,14 +7,46 @@ function Premium() {
   const isPremium = profile?.is_premium === true;
   const navigate = useNavigate();
 
+  const handleSubscribe = async () => {
+    try {
+      const response = await fetch(
+        "https://cpmoqkvlnvqfysauereg.supabase.co/functions/v1/create-premium-subscription",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        const text = await response.text();
+        console.error("Error HTTP:", response.status, text);
+        alert("Error al iniciar la suscripción");
+        return;
+      }
+
+      const data = await response.json();
+
+      if (!data?.init_point) {
+        console.error("Respuesta inválida:", data);
+        alert("No se pudo iniciar el pago");
+        return;
+      }
+
+      // 👉 Redirección a Mercado Pago
+      window.location.href = data.init_point;
+    } catch (err) {
+      console.error("Error inesperado:", err);
+      alert("Ocurrió un error inesperado");
+    }
+  };
+
   return (
     <div className="premium-page">
       <div className="premium-wrapper">
         {/* BOTÓN VOLVER */}
-        <button
-          className="premium-back"
-          onClick={() => navigate(-1)}
-        >
+        <button className="premium-back" onClick={() => navigate(-1)}>
           ← Volver
         </button>
 
@@ -63,7 +95,7 @@ function Premium() {
             </div>
 
             {!isPremium ? (
-              <button className="premium-cta">
+              <button className="premium-cta" onClick={handleSubscribe}>
                 Suscribirme a Premium
               </button>
             ) : (

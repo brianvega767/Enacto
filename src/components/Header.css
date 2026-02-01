@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: #ffffff;
+  background: #f7f8fc; /* ⬅ ÚNICO CAMBIO (antes #ffffff) */
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   z-index: 1200;
 }
@@ -145,7 +145,7 @@
 
 .search-wrapper {
   position: relative;
-  flex: 1; /* ✅ importante para que el buscador no se achique */
+  flex: 1;
 }
 
 .search-input {
@@ -174,8 +174,6 @@
   color: #888;
   margin: 6px auto 0;
   max-width: 600px;
-
-  /* ✅ para que no se corte en mobile */
   width: calc(100% - 24px);
   box-sizing: border-box;
   padding: 10px 12px;
@@ -303,7 +301,7 @@
    MOBILE MENU BUTTON
    ========================= */
 .mobile-menu-btn {
-  display: none; /* desktop hidden */
+  display: none;
   background: none;
   border: none;
   font-size: 26px;
@@ -317,39 +315,20 @@
   background: rgba(0,0,0,0.06);
 }
 
+body .header,
+body .header-inner {
+  background-color: #f7f8fc !important;
+}
+
 /* =========================
-   HEADER MOBILE FIX (solo mobile, sin romper desktop)
-   OBJETIVO:
-   - En PC: [ENACTO][BUSCADOR][MI CUENTA] (ya lo cumple el base)
-   - En Mobile: LOGO arriba, y abajo: [☰][BUSCADOR][MI CUENTA]
+   HEADER MOBILE FIX
    ========================= */
 @media (max-width: 768px) {
 
-  /* ✅ header por encima del sidebar (solo si el sidebar usa z-index 1400 en mobile) */
   .header {
     z-index: 1600;
   }
 
-  @media (max-width: 768px) {
-
-  .sidebar {
-    position: fixed;
-    top: 150px;               /* ✅ BAJAMOS el sidebar */
-    height: calc(100vh - 120px);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    background: #eef5ff;
-    z-index: 1400;
-  }
-
-  body.sidebar-open .sidebar {
-    transform: translateX(0);
-  }
-
-}
-
-
-  /* ✅ Permitimos 2 filas reales sin tocar desktop */
   .header-inner {
     flex-wrap: wrap;
     align-items: center;
@@ -357,25 +336,20 @@
     padding: 14px;
   }
 
-  /* ✅ LOGO ARRIBA (fila 1 completa) */
   .header .logo {
     order: 1;
     width: 100%;
-    margin-left: 0; /* no romper */
+    margin-left: 0;
     justify-content: center;
     text-align: center;
     font-size: 22px;
   }
 
-  /* ✅ BOTON SIDEBAR (abajo izquierda) */
   .mobile-menu-btn {
     order: 2;
     display: inline-flex;
-    justify-content: center;
-    align-items: center;
   }
 
-  /* ✅ BUSCADOR (abajo centro, ocupa espacio) */
   .search-wrapper {
     order: 3;
     flex: 1;
@@ -388,7 +362,6 @@
     padding: 12px 44px 12px 14px;
   }
 
-  /* ✅ MI CUENTA (abajo derecha) */
   .header-actions {
     order: 4;
     width: auto;
@@ -396,19 +369,16 @@
     margin-top: 0;
   }
 
-  /* ✅ si estás logueado, que no se desborde */
   .profile-btn {
     margin-left: 0;
   }
 
-  /* ✅ panel filtros: que no se corte */
   .filters-panel-placeholder {
     max-width: none;
     width: calc(100% - 24px);
     margin: 10px auto 0;
   }
 
-  /* ✅ auth buttons: en mobile pueden quedar compactos */
   .header-auth-buttons {
     gap: 10px;
     align-items: center;
