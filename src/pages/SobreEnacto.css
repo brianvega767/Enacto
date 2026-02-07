@@ -7,8 +7,6 @@
   min-height: 100vh;
   background: linear-gradient(180deg, #f8fafc, #ffffff);
   padding: 64px 16px;
-  display: flex;
-  justify-content: center;
 }
 
 /* Cortar herencia global */
@@ -27,6 +25,7 @@
 .sobre-enacto-container {
   width: 100%;
   max-width: 900px;
+  margin: 0 auto;
 }
 
 /* =====================
@@ -94,7 +93,7 @@
 }
 
 /* =====================
-   BOTONES (FUERTES)
+   BOTONES
 ===================== */
 
 .sobre-enacto .btn {
@@ -109,6 +108,7 @@
   text-decoration: none;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+  width: fit-content;
 }
 
 /* Hover */
@@ -142,4 +142,67 @@
   padding: 18px 36px;
   font-size: 1.2rem;
   border-radius: 16px;
+}
+
+/* =====================
+   📱 RESPONSIVE
+===================== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .sobre-enacto h1 {
+    font-size: 2.1rem;
+  }
+
+  .sobre-enacto h2 {
+    font-size: 1.6rem;
+  }
+
+  .sobre-enacto .paso {
+    padding: 24px;
+  }
+}
+
+/* Celulares */
+@media (max-width: 768px) {
+  .sobre-enacto {
+    padding: 48px 14px;
+  }
+
+  .sobre-enacto h1 {
+    font-size: 1.8rem;
+  }
+
+  .sobre-enacto h2 {
+    font-size: 1.4rem;
+  }
+
+  .sobre-enacto p {
+    font-size: 0.95rem;
+  }
+
+  .sobre-enacto .btn {
+    width: 100%;
+    padding: 14px;
+  }
+
+  .sobre-enacto .btn-link {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Celulares chicos */
+@media (max-width: 480px) {
+  .sobre-enacto h1 {
+    font-size: 1.6rem;
+  }
+
+  .sobre-enacto h2 {
+    font-size: 1.25rem;
+  }
+
+  .sobre-enacto .paso {
+    padding: 20px;
+  }
 }

@@ -6,6 +6,7 @@ import CookieBanner from "./components/legal/CookieBanner";
 import DenunciarPerfil from "./pages/DenunciarPerfil";
 import Premium from "./pages/Premium";
 import SobreEnacto from "./pages/SobreEnacto";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 // Páginas
@@ -60,6 +61,7 @@ function App() {
       >
         <Routes>
           {/* HOME */}
+          <Route path="/sobre-enacto" element={<SobreEnacto />} />
           <Route path="/" element={<Home />} />
           <Route path="/buscar" element={<Buscar />} />
 
