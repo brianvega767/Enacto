@@ -5,6 +5,8 @@ import LegalFooter from "./components/legal/LegalFooter";
 import CookieBanner from "./components/legal/CookieBanner";
 import DenunciarPerfil from "./pages/DenunciarPerfil";
 import Premium from "./pages/Premium";
+import SobreEnacto from "./pages/SobreEnacto";
+
 
 // Páginas
 import Home from "./pages/Home";
@@ -70,6 +72,7 @@ function App() {
           <Route path="/recuperar-email" element={<RecuperarEmail />} />
           <Route path="/verificar-email" element={<VerifyEmail />} />
           <Route path="/premium" element={<Premium />} />
+          <Route path="/sobre-enacto" element={<SobreEnacto />} />
 
           {/* AYUDA */}
           <Route path="/ayuda" element={<Ayuda />} />

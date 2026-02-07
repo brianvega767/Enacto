@@ -1,14 +1,19 @@
 import "./Premium.css";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Premium() {
   const { profile } = useAuth();
   const isPremium = profile?.is_premium === true;
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubscribe = async () => {
     try {
+      setLoading(true);
+
       const response = await fetch(
         "https://cpmoqkvlnvqfysauereg.supabase.co/functions/v1/create-premium-subscription",
         {
@@ -23,6 +28,7 @@ function Premium() {
         const text = await response.text();
         console.error("Error HTTP:", response.status, text);
         alert("Error al iniciar la suscripción");
+        setLoading(false);
         return;
       }
 
@@ -31,6 +37,7 @@ function Premium() {
       if (!data?.init_point) {
         console.error("Respuesta inválida:", data);
         alert("No se pudo iniciar el pago");
+        setLoading(false);
         return;
       }
 
@@ -39,6 +46,7 @@ function Premium() {
     } catch (err) {
       console.error("Error inesperado:", err);
       alert("Ocurrió un error inesperado");
+      setLoading(false);
     }
   };
 
@@ -95,8 +103,19 @@ function Premium() {
             </div>
 
             {!isPremium ? (
-              <button className="premium-cta" onClick={handleSubscribe}>
-                Suscribirme a Premium
+              <button
+                className={`premium-cta ${loading ? "loading" : ""}`}
+                onClick={handleSubscribe}
+                disabled={loading}
+              >
+                {loading ? (
+                  <span className="loading-content">
+                    <span className="spinner" />
+                    Redirigiendo a Mercado Pago…
+                  </span>
+                ) : (
+                  "Suscribirme a Premium"
+                )}
               </button>
             ) : (
               <div className="already-premium">

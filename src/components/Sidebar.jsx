@@ -75,7 +75,14 @@ function Sidebar() {
             </div>
           )}
 
-          <Link to="/ayuda">🆘 Ayuda</Link>
+          <Link to="/ayuda" onClick={() => setIsMobileOpen(false)}>
+            🆘 Ayuda
+          </Link>
+
+          {/* 🔹 NUEVO BOTÓN */}
+          <Link to="/sobre-enacto" onClick={() => setIsMobileOpen(false)}>
+            ℹ️ Sobre Enacto
+          </Link>
 
           {/* =====================
               HERRAMIENTAS PARA FERIANTES

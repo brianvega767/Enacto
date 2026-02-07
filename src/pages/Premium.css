@@ -188,6 +188,33 @@
   color: #111827;
 }
 
+.premium-cta.loading {
+  cursor: not-allowed;
+  opacity: 0.85;
+}
+
+.loading-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+
+/* Spinner elegante */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-top: 3px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 /* =====================
    MOBILE TWEAKS
